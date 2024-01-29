@@ -18,6 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+/* General feel settings */
+// Tap dance
+#undef TAPPING_TERM
+#define TAPPING_TERM 174
+#define TAPPING_TERM_PER_KEY
+
+#define USB_SUSPEND_WAKEUP_DELAY 0
+
+
 /* split config */
 // USB cable goes into left
 #define MASTER_LEFT
@@ -36,7 +45,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* mouse config */
-#define MOUSEKEY_INTERVAL    20
+#undef MOUSEKEY_INTERVAL
+#define MOUSEKEY_INTERVAL 15
 #define MOUSEKEY_DELAY       0
 #define MOUSEKEY_TIME_TO_MAX 60
 #define MOUSEKEY_MAX_SPEED   7

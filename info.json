@@ -30,11 +30,12 @@
         // "extrakey": true",
         "mousekey": true,
         "nkro": true,
-        // "tap_dance": true,
+        "tap_dance": true,
         "split_keyboard": true,
         "analog_driver": true,
         "joystick": true,
-        // "lto": true,
+        "lto": true,
+        "dynamic_macro": true,
     },
     "layouts": {
         "LAYOUT": {
