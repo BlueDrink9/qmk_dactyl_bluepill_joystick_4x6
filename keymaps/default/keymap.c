@@ -11,41 +11,51 @@ int16_t joyYMid = JOYSTICK_AXIS_MAX/2;
 
 void scan_joystick_button(void);
 
-enum layer_names {
-    _BASE,
-    _LETTERS,
-    _SPECIAL
-};
-
 // enum tap_dance_actions_enum {
 //       TD_LAYER_TOGGLE
 // };
 
-
-const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [_BASE] = LAYOUT(
-        KC_ESC, KC_1, KC_2, KC_3, KC_4, LT(_SPECIAL, KC_5),
-        KC_Q, KC_W, KC_E, KC_R,
-        KC_TAB, KC_A, KC_S, KC_D, KC_F,
-        KC_LSFT, KC_C,
-        KC_LCTL, KC_LALT, KC_SPC
-    ),
-    [_LETTERS] = LAYOUT(
-        KC_ESC, KC_1, KC_2, KC_I, KC_O, LT(_SPECIAL, KC_P),
-        KC_Q, KC_W, KC_E, KC_R,
-        KC_TAB, KC_A, KC_S, KC_D, KC_F,
-        KC_LSFT, KC_C,
-        KC_LCTL, KC_LALT, KC_SPC
-    ),
-    [_SPECIAL] = LAYOUT(
-        KC_DOLLAR, TO(_BASE), TO(_LETTERS), KC_DOLLAR, KC_DOLLAR, LT(_BASE, TO(_BASE)),
-        KC_DOLLAR, KC_DOLLAR, KC_DOLLAR, KC_DOLLAR, KC_DOLLAR,
-        KC_DOLLAR, KC_DOLLAR, KC_DOLLAR, KC_DOLLAR,
-        QK_BOOT, KC_DOLLAR,
-        KC_DOLLAR, KC_DOLLAR, QK_BOOT
-    )
+enum layer_names {
+    BASE,
+    COLEMAK,
+    GAMING,
+    NUMBERS,
+    SPECIAL,
+    VIM,
 };
 
+// DON'T FORGET TO INCLUDE A PATH TO QK_BOOTLOADER
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+
+    [BASE] = LAYOUT(
+KC_ESC, KC_1, KC_2, KC_3, KC_4, KC_5,    KC_6, KC_7, KC_8, KC_9, KC_0, KC_EQL,
+KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,    KC_Y, KC_U, KC_I, KC_O, KC_P, KC_MINUS,
+KC_BSPC, KC_A, MT(KC_LALT, KC_S), MT(KC_LWIN, KC_D), MT(KC_LCTL, KC_F), KC_G,    KC_H, MT(KC_RCTL, KC_J), MT(KC_RWIN, KC_K), MT(KC_RALT, KC_L), KC_SEMICOLON, KC_QUOT,
+LSFT_T(KC_LEFT_BRACKET), KC_Z, KC_X, KC_C, LT(VIM,KC_V), KC_B,     KC_N, LT(VIM,KC_M), KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_RIGHT_BRACKET),
+
+KC_MS_LEFT, TT(SPECIAL), TT(NUMBERS),
+KC_DEL,     KC_SPACE,    KC_BACKSPACE,
+
+        // Temporary bootloader key so I don't forget to include one
+QK_BOOTLOADER,         KC_SPC, KC_APP, 
+LALT_T(KC_RALT), KC_RIGHT_SHIFT, KC_ENTER
+),
+
+    [COLEMAK] = LAYOUT(
+KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,
+KC_TRNS, KC_Q,    KC_W,    KC_F,    KC_P,          KC_G,    KC_J,    KC_L,          KC_U,    KC_Y,    KC_SEMICOLON, KC_TRNS,
+KC_TRNS, KC_A, MT(KC_LALT, KC_R), MT(KC_LWIN, KC_S), MT(KC_LCTL, KC_T), KC_D,    KC_H, MT(KC_RCTL, KC_N), MT(KC_RWIN, KC_E), MT(KC_RALT, KC_I), KC_O, KC_TRNS,
+KC_TRNS, KC_Z,    KC_X,    KC_C,    LT(VIM, KC_V), KC_B,    KC_K,    LT(VIM, KC_M), KC_COMM, KC_DOT,  KC_SLSH,      KC_TRNS,
+
+KC_TRNS, KC_TRNS, KC_TRNS,
+KC_TRNS, KC_TRNS, KC_TRNS,
+
+KC_TRNS, KC_TRNS, KC_TRNS,
+KC_TRNS, KC_TRNS, KC_TRNS
+)
+
+
+};
 
 // void dance_layer_toggle(qk_tap_dance_state_t *state, void *user_data) {
 //   if (state->count == 1) {

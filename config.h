@@ -66,7 +66,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_CLICK_PIN A0
 
 
-
 // #define DEBUG_MATRIX_SCAN_RATE
 
 // #define DEBOUNCE 10
