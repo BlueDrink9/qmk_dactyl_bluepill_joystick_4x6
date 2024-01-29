@@ -48,11 +48,7 @@ Variants are denoted as `RowCount`*x*`ColumnCount`*(_`Alteration`)*
 
 Make example for this keyboard (after setting up your build environment) in the 5x6 variant:
 
-    make handwired/dactyl_manuform/5x6:default
-
-Flashing example for this keyboard:
-
-    make handwired/dactyl_manuform/5x6:default:flash
+    make handwired/my_dactyl
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
@@ -70,26 +66,12 @@ Variants with VIA support:
 - 5x6_5
 - 5x7
 
-### Miryoku
-
-For more information on this layout schematic, please see the [Miryoku Reference Manual](https://github.com/manna-harbour/miryoku/tree/master/docs/reference).  
-For QMK specifics, please see [Miryoku QMK](https://github.com/manna-harbour/miryoku_qmk/tree/miryoku/users/manna-harbour_miryoku).  
-
-Variants with *Miryoku* support:
-- 4x5
-- 4x5_5
-- 4x6
-- 4x6_5
-- 5x6
-
-## Non-Pro Micro Controller Compilation
-
-If building a Dactyl Manuform with controllers that aren't a pro micro, the Converter feature of QMK will allow compilation of firmware for the intended variant and supported controller without having to create a new QMK keyboard/keymap.  
-Please see [Converters](https://docs.qmk.fm/#/feature_converters?id=supported-converters) documentation for list of controllers that are supported converting from `pro_micro` and how to implement conversion.
-
 ## Flashing
 
-To flash your board with generated firmware file, please see [Flashing Instructions and Bootloader Information](https://docs.qmk.fm/#/flashing)
+
+Flashing example for this keyboard:
+
+    dfu-util -a 2 -d 1EAF:0003 -D .build/handwired_my_dactyl_default.bin
 
 ## Handedness configurations
 
@@ -103,10 +85,13 @@ Compile firmware, for [enabled variant](#via), with it's `via` keymap and flash 
 qmk compile -kb handwired/dactyl_manuform/4x6 -km via
 ```
 
+
 ## Bootloader
 
-Enter the bootloader in 3 ways:
+Enter the bootloader in 2 ways:
 
-* **Bootmagic reset**: If enabled, hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
-* **Physical reset button**: Briefly press the button on the back of the PCB or controller - some may have pads you must short instead
-* **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+* **Physical reset button**: On the bluepill, hold the KEY0 button then press the NRST button.
+* **Keycode in layout**: Hold 5, then press space
+<!-- * **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard -->
+
+The bootloader only persists briefly, so start the dfu flash asap (leaving ~1 second for MCU to reboot to bootloader).
