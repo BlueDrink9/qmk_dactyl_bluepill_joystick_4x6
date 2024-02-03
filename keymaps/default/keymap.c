@@ -13,6 +13,17 @@ void scan_joystick_button(void);
 //       TD_LAYER_TOGGLE
 // };
 
+enum custom_keycodes {
+  RGB_SLD = SAFE_RANGE,
+  NEWLINE_AFTER,
+  PASTE_UP,
+  CUT_EOL,
+  SELECT_LINE,
+  YANK_EOL,
+  NEWLINE_UP,
+  PASTE_REPLACE,
+};
+
 enum layer_names {
     BASE,
     COLEMAK,
@@ -21,34 +32,7 @@ enum layer_names {
     SPECIAL,
     VIM,
     VIM_SHIFTED,
-};
-
-enum custom_keycodes {
-  RGB_SLD = SAFE_RANGE,
-  ST_MACRO_0,
-  ST_MACRO_1,
-  ST_MACRO_2,
-  ST_MACRO_3,
-  ST_MACRO_4,
-  ST_MACRO_5,
-  ST_MACRO_6,
-};
-
-enum tap_dance_codes {
-  DANCE_0,
-  DANCE_1,
-  DANCE_2,
-  DANCE_3,
-  DANCE_4,
-  DANCE_5,
-  DANCE_6,
-  DANCE_7,
-  DANCE_8,
-  DANCE_9,
-  DANCE_10,
-  DANCE_11,
-  DANCE_12,
-  DANCE_13,
+    VIM_VISUAL,
 };
 
 // DON'T FORGET TO INCLUDE A PATH TO QK_BOOTLOADER
@@ -84,7 +68,7 @@ KC_TRNS, KC_TRNS, KC_TRNS
   [VIM] = LAYOUT(
 DM_REC2, DM_RSTP,   DM_PLY1, DM_PLY2,   KC_END,       KC_TRNS,       KC_TRNS,        KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_HOME,    KC_TRNS,
 KC_TRNS, DM_REC1, LCTL(KC_RIGHT),  KC_TRNS,   LCTL(KC_V),   TD(DANCE_9),   KC_DOWN,        KC_RIGHT, LCTL(KC_Z), LCTL(KC_C), KC_TRNS,    KC_TRNS,
-KC_TRNS, KC_END,         KC_BACKSPACE,       KC_TRNS,   KC_TRNS,      LCTL(KC_X),    LCTL(KC_RIGHT), TO(BASE),    ST_MACRO_0, KC_TRNS, KC_TRNS,    KC_TRNS,
+KC_TRNS, KC_END,         KC_BACKSPACE,       KC_TRNS,   KC_TRNS,      LCTL(KC_X),    LCTL(KC_RIGHT), TO(BASE),    NEWLINE_AFTER, KC_TRNS, KC_TRNS,    KC_TRNS,
 MO(VIM_SHIFTED),   KC_TRNS,        KC_DELETE,       KC_CUT, TD(DANCE_10), LCTL(KC_LEFT), KC_UP,          KC_TRNS,  KC_TRNS,    KC_TRNS,    LCTL(KC_F), MO(VIM_SHIFTED),
 
 KC_TRNS, KC_TRNS, KC_TRNS,
@@ -96,17 +80,48 @@ KC_TRNS, KC_TRNS, KC_TRNS
 
   [VIM_SHIFTED] = LAYOUT(
     KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_END,     KC_TRNS,      KC_HOME, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, ST_MACRO_1, LCTL(KC_END), KC_TRNS, KC_TRNS, KC_TRNS,    ST_MACRO_4, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_END,  KC_TRNS,   KC_TRNS, KC_TRNS,    ST_MACRO_2,   KC_TRNS, KC_HOME, ST_MACRO_5, KC_TRNS,    KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_BACKSPACE, KC_TRNS, ST_MACRO_3, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, PASTE_UP, LCTL(KC_END), KC_TRNS, KC_TRNS, KC_TRNS,    YANK_EOL, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_END,  KC_TRNS,   KC_TRNS, KC_TRNS,    CUT_EOL,   KC_TRNS, KC_HOME, NEWLINE_UP, KC_TRNS,    KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_BACKSPACE, KC_TRNS, SELECT_LINE, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS,
 
         KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS,
 
         KC_TRNS, KC_TRNS, KC_TRNS,
         KC_TRNS, KC_TRNS, KC_TRNS
+  ),
+
+  [VIM_VISUAL] = LAYOUT(
+  TO(VIM),   KC_TRNS, KC_TRNS,              KC_TRNS, LSFT(KC_END),  KC_TRNS,             LSFT(KC_HOME), KC_TRNS,        KC_TRNS,              KC_TRNS,     LSFT(KC_HOME), KC_TRNS,
+  KC_TRNS,   KC_TRNS, LCTL(LSFT(KC_RIGHT)), KC_TRNS, PASTE_REPLACE, TD(DANCE_BOF_EOF),   LSFT(KC_DOWN), LSFT(KC_RIGHT), LCTRL(KC_Z),          LCTRL(KC_C), KC_TRNS,       KC_TRNS,
+  KC_TRNS,   KC_TRNS, KC_TRNS,              KC_TRNS, KC_TRNS,       LCTL(KC_X),          LSFT(KC_LEFT), KC_TRNS,        LCTL(LSFT(KC_RIGHT)), KC_TRNS,     KC_TRNS,       KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_BACKSPACE,         KC_TRNS, TO(VIM),       LCTL(LSFT(KC_LEFT)), LSFT(KC_UP),   KC_TRNS,        LSFT(KC_TAB),         KC_TAB,      KC_TRNS,       KC_TRNS,
+
+      KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS,
+
+      KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_TRNS
+
 
 )};
+
+enum tap_dance_codes {
+  DANCE_0,
+  DANCE_1,
+  DANCE_2,
+  DANCE_3,
+  DANCE_4,
+  DANCE_5,
+  DANCE_6,
+  DANCE_7,
+  DANCE_8,
+  DANCE_9,
+  DANCE_10,
+  DANCE_BOF_EOF,
+  DANCE_12,
+  DANCE_13,
+};
 
 // void dance_layer_toggle(tap_dance_state_t *state, void *user_data) {
 //   if (state->count == 1) {
@@ -141,17 +156,17 @@ void keyboard_pre_init_user(void) {
     // Joystick setup
     setPinInputHigh(JOY_BUTTON_PIN);
     // Set mid based on current resting position
-    // if ((joyXMid != analogReadPin(JOYXPIN))|(joyYMid != analogReadPin(JOYYPIN))) {
-    //     joyXMid = analogReadPin(JOYXPIN);
-    //     joyYMid = analogReadPin(JOYYPIN);
-    // }
+    if ((joyXMid != analogReadPin(JOYXPIN))|(joyYMid != analogReadPin(JOYYPIN))) {
+        joyXMid = analogReadPin(JOYXPIN);
+        joyYMid = analogReadPin(JOYYPIN);
+    }
 }
 
 void matrix_init_user(){
 }
 
 void matrix_scan_user(void) {
-    scan_joystick_button();
+    // scan_joystick_button();
 };
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
@@ -177,37 +192,37 @@ void scan_joystick_button(){
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case ST_MACRO_0:
+    case NEWLINE_AFTER:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_END) SS_DELAY(100) SS_TAP(X_ENTER));
     }
     break;
-    case ST_MACRO_1:
+    case PASTE_UP:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LCTL(SS_TAP(X_V)) SS_DELAY(100) SS_TAP(X_ENTER));
     }
     break;
-    case ST_MACRO_2:
+    case CUT_EOL:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(100) SS_LCTL(SS_TAP(X_X)));
     }
     break;
-    case ST_MACRO_3:
+    case SELECT_LINE:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LSFT(SS_TAP(X_END)));
     }
     break;
-    case ST_MACRO_4:
+    case YANK_EOL:
     if (record->event.pressed) {
       SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(100) SS_LCTL(SS_TAP(X_C)));
     }
     break;
-    case ST_MACRO_5:
+    case NEWLINE_UP:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(100) SS_TAP(X_LEFT));
     }
     break;
-    case ST_MACRO_6:
+    case PASTE_REPLACE:
     if (record->event.pressed) {
       SEND_STRING(SS_TAP(X_DELETE) SS_DELAY(100) SS_LCTL(SS_TAP(X_V)));
     }
@@ -573,11 +588,11 @@ void dance_10_reset(tap_dance_state_t *state, void *user_data) {
     }
     dance_state[10].step = 0;
 }
-void on_dance_11(tap_dance_state_t *state, void *user_data);
-void dance_11_finished(tap_dance_state_t *state, void *user_data);
-void dance_11_reset(tap_dance_state_t *state, void *user_data);
+void on_dance_bof_eof(tap_dance_state_t *state, void *user_data);
+void dance_bof_eof_finished(tap_dance_state_t *state, void *user_data);
+void dance_bof_eof_reset(tap_dance_state_t *state, void *user_data);
 
-void on_dance_11(tap_dance_state_t *state, void *user_data) {
+void on_dance_bof_eof(tap_dance_state_t *state, void *user_data) {
     if(state->count == 3) {
         tap_code16(LCTL(LSFT(KC_HOME)));
         tap_code16(LCTL(LSFT(KC_HOME)));
@@ -588,7 +603,7 @@ void on_dance_11(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void dance_11_finished(tap_dance_state_t *state, void *user_data) {
+void dance_bof_eof_finished(tap_dance_state_t *state, void *user_data) {
     dance_state[11].step = dance_step(state);
     switch (dance_state[11].step) {
         case SINGLE_TAP: register_code16(LCTL(LSFT(KC_HOME))); break;
@@ -598,7 +613,7 @@ void dance_11_finished(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void dance_11_reset(tap_dance_state_t *state, void *user_data) {
+void dance_bof_eof_reset(tap_dance_state_t *state, void *user_data) {
     wait_ms(10);
     switch (dance_state[11].step) {
         case SINGLE_TAP: unregister_code16(LCTL(LSFT(KC_HOME))); break;
@@ -695,7 +710,7 @@ tap_dance_action_t tap_dance_actions[] = {
         [DANCE_8] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_8_finished, dance_8_reset),
         [DANCE_9] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_9, dance_9_finished, dance_9_reset),
         [DANCE_10] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, dance_10_finished, dance_10_reset),
-        [DANCE_11] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_11, dance_11_finished, dance_11_reset),
+        [DANCE_BOF_EOF] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_bof_eof, dance_bof_eof_finished, dance_bof_eof_reset),
         [DANCE_12] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_12, dance_12_finished, dance_12_reset),
         [DANCE_13] = ACTION_TAP_DANCE_FN_ADVANCED(on_dance_13, dance_13_finished, dance_13_reset),
 };
