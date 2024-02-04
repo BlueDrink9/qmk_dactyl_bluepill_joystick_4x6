@@ -68,7 +68,7 @@ LSFT_T(KC_LEFT_BRACKET), KC_Z, KC_X, KC_C, LT(VIM,KC_V), KC_B,     KC_N, LT(VIM,
     // Left cluster has joystick in top right position.
     KC_SPC, MT(KC_RALT, KC_ENTER), KC_MS_BTN1,       KC_APP,   TT(NUMBERS),      KC_RIGHT_SHIFT,
     // Temporary bootloader key on layer 0 so I don't forget to include one while debugging
-    KC_BACKSPACE, KC_DEL,   TT(SPECIAL),      QK_BOOTLOADER, TT(SPECIAL), KC_ENTER
+    KC_BACKSPACE, KC_DEL,   TT(SPECIAL),      QK_BOOT, TT(SPECIAL), KC_ENTER
 ),
 
     [COLEMAK] = LAYOUT(
@@ -124,10 +124,10 @@ KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
 
 
   [SPECIAL] = LAYOUT(
-    TO(QWERTY), TO(QWERTY), TO(COLEMAK),       KC_TRNS,    KC_TRNS,      KC_SYSTEM_SLEEP,       QK_BOOTLOADER,         KC_TRNS,       KC_TRNS,    KC_TRNS,        KC_PRINT_SCREEN, KC_SYRQ,
+    TO(QWERTY), TO(QWERTY), TO(COLEMAK),       KC_TRNS,    KC_TRNS,      KC_SYSTEM_SLEEP,       QK_BOOT,         KC_TRNS,       KC_TRNS,    KC_TRNS,        KC_PRINT_SCREEN, KC_SYRQ,
     KC_TRNS,         KC_TRNS, KC_MS_WH_LEFT, KC_MS_UP,   KC_MS_WH_RIGHT, KC_TRNS,       KC_TRNS, KC_HOME, KC_UP,   KC_END, KC_TRNS,    KC_TRNS,
     KC_CAPS_LOCK,     KC_TRNS, KC_MS_LEFT,    KC_MS_DOWN, KC_MS_RIGHT,    KC_MS_WH_UP,   KC_PGUP,  KC_LEFT,    KC_DOWN, KC_RIGHT,    KC_TRNS,    KC_TRNS,
-    QK_BOOTLOADER,         KC_TRNS, KC_MS_BTN2,     KC_MS_BTN3, KC_MS_BTN1,   KC_MS_WH_DOWN,     KC_PGDN,  KC_TRNS,       KC_TRNS,    KC_UP,          KC_TRNS,    KC_TRNS,
+    QK_BOOT,         KC_TRNS, KC_MS_BTN2,     KC_MS_BTN3, KC_MS_BTN1,   KC_MS_WH_DOWN,     KC_PGDN,  KC_TRNS,       KC_TRNS,    KC_UP,          KC_TRNS,    KC_TRNS,
 
   TD(TD_PAUSEPLAY), KC_AUDIO_VOL_UP,        KC_TRNS,       KC_PGUP, KC_MS_BTN2, KC_MS_BTN1,
   KC_MEDIA_PREV_TRACK, TD(TD_VOLDOWN_MUTE), KC_TRNS,       KC_PGDN, KC_TRNS, KC_MS_BTN3

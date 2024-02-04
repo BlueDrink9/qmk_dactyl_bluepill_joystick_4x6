@@ -19,13 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 
 /* General feel settings */
-// Tap dance
-#undef TAPPING_TERM
-#define TAPPING_TERM 185
-#define TAPPING_TERM_PER_KEY
-
-// #define TAPPING_TOGGLE 2
-
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
 
@@ -52,23 +45,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SERIAL_USART_DRIVER SD2
 
 
-/* mouse config */
-#undef MOUSEKEY_INTERVAL
-#define MOUSEKEY_INTERVAL 15
-#define MOUSEKEY_DELAY       0
-#define MOUSEKEY_TIME_TO_MAX 60
-#define MOUSEKEY_MAX_SPEED   7
-#define MOUSEKEY_WHEEL_DELAY 0
-
-/* Mechanical locking support. Use KC_LCAP, KC_LNUM or KC_LSCR instead in keymap */
-#define LOCKING_SUPPORT_ENABLE
-/* Locking resynchronize hack */
-#define LOCKING_RESYNC_ENABLE
-
-/* Enables This makes it easier for fast typists to use dual-function keys */
-#define PERMISSIVE_HOLD
-
-
 // // Joystick setup
 #define JOYSTICK_BUTTON_COUNT 0
 // #define JOY_BUTTON_PIN B5
@@ -87,10 +63,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_SPEED_MAX 2
 #define ANALOG_JOYSTICK_CLICK_PIN A0
 
-
-// #define DEBUG_MATRIX_SCAN_RATE
-
-#define DEBOUNCE 10
 
 #define GRAVE_ESC_CTRL_OVERRIDE
 
