@@ -21,8 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* General feel settings */
 // Tap dance
 #undef TAPPING_TERM
-#define TAPPING_TERM 174
+#define TAPPING_TERM 185
 #define TAPPING_TERM_PER_KEY
+
+// #define TAPPING_TOGGLE 2
+
 
 #define USB_SUSPEND_WAKEUP_DELAY 0
 
@@ -61,23 +64,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 
 
-// Joystick setup
-#define JOYSTICK_BUTTON_COUNT 1
-#define JOY_BUTTON_PIN B5
-// #define JOY_BUTTON_KEY JS_0
-#define JOY_BUTTON_KEY KC_X
+// // Joystick setup
+// #define JOYSTICK_BUTTON_COUNT 1
+// #define JOY_BUTTON_PIN B5
+// // #define JOY_BUTTON_KEY JS_0
+// #define JOY_BUTTON_KEY KC_X
 // Min 0, max 6: X, Y, Z, Rx, Ry, Rz
 #define JOYSTICK_AXIS_COUNT 2
-#define JOYXPIN B0
-#define JOYYPIN B1
+#define ANALOG_JOYSTICK_X_AXIS_PIN B0
+#define ANALOG_JOYSTICK_Y_AXIS_PIN B1
 // Min 8, max 16
 #define JOYSTICK_AXIS_RESOLUTION 12
 #define JOYSTICK_AXIS_MAX 4095
+#define ANALOG_JOYSTICK_AXIS_MAX 4095
+// Lower makes movement faster
+#define ANALOG_JOYSTICK_SPEED_REGULATOR 20
+#define ANALOG_JOYSTICK_SPEED_MAX 2
 #define ANALOG_JOYSTICK_CLICK_PIN A0
+#define POINTING_DEVICE_LEFT
 
 
 // #define DEBUG_MATRIX_SCAN_RATE
 
-// #define DEBOUNCE 10
+#define DEBOUNCE 10
 
-// #define TAPPING_TOGGLE 2
+#define GRAVE_ESC_CTRL_OVERRIDE
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 3000 

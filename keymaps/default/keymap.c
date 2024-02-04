@@ -9,6 +9,18 @@ int16_t joyYMid = JOYSTICK_AXIS_MAX/2;
 
 void scan_joystick_button(void);
 
+// Custom tapping terms
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // case SFT_T(KC_SPC):
+        //     return TAPPING_TERM + 1250;
+        // case LT(1, KC_GRV):
+        //     return 130;
+        default:
+            return TAPPING_TERM;
+    }
+}
+
 // enum tap_dance_actions_enum {
 //       TD_LAYER_TOGGLE
 // };
@@ -165,42 +177,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 void keyboard_pre_init_user(void) {
-    // Joystick setup
-    setPinInputHigh(JOY_BUTTON_PIN);
     // Set mid based on current resting position
-    if ((joyXMid != analogReadPin(JOYXPIN))|(joyYMid != analogReadPin(JOYYPIN))) {
-        joyXMid = analogReadPin(JOYXPIN);
-        joyYMid = analogReadPin(JOYYPIN);
+    if ((joyXMid != analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN))|
+          (joyYMid != analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN))) {
+        joyXMid = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
+        joyYMid = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
     }
 }
-
-void matrix_init_user(){
-}
-
-void matrix_scan_user(void) {
-    // scan_joystick_button();
-};
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    JOYSTICK_AXIS_IN(JOYXPIN, JOYSTICK_AXIS_MAX, JOYSTICK_AXIS_MAX/2, 0), // X, Low(L) ~ High(R)
-    JOYSTICK_AXIS_IN(JOYYPIN, JOYSTICK_AXIS_MAX, JOYSTICK_AXIS_MAX/2, 0), // Y, Low(U) ~ High(D)
+    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_X_AXIS_PIN, JOYSTICK_AXIS_MAX, JOYSTICK_AXIS_MAX/2, 0), // X, Low(L) ~ High(R)
+    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, JOYSTICK_AXIS_MAX, JOYSTICK_AXIS_MAX/2, 0), // Y, Low(U) ~ High(D)
 };
-
-static uint8_t direct_pin_state = 0; // Store last state
-
-void scan_joystick_button(){
-    uint8_t current_state = readPin(JOY_BUTTON_PIN);
-    // Check for state change from high to low (button press)
-    if (direct_pin_state && !current_state) {
-        // Button was high, now low: Key press
-        register_code(JOY_BUTTON_KEY);
-    } else if (!direct_pin_state && current_state) {
-        // Button was low, now high: Key release
-        unregister_code(JOY_BUTTON_KEY);
-    }
-    // Update last state
-    direct_pin_state = current_state;
-}
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
