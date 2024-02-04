@@ -34,8 +34,14 @@
         "split_keyboard": true,
         "analog_driver": true,
         "joystick": true,
+        "pointing_device": true,
         "lto": true,
         "dynamic_macro": true,
+        "caps_word": true,
+        "key_override": true,
+        "dynamic_tapping_term": false,
+        "rgblight": false,
+        "backlight": false,
     },
     "layouts": {
         "LAYOUT": {

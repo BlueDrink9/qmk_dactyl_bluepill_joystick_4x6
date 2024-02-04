@@ -31,6 +31,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* split config */
+// Use these if I decide to solder-specify handedness - which I probably
+// should do tbh
+// #define SPLIT_HAND_PIN B7
+// #define    SPLIT_HAND_PIN_LOW_IS_LEFT
 // USB cable goes into left
 #define MASTER_LEFT
 
@@ -39,6 +43,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define SPLIT_MODS_ENABLE
 
 // #define SPLIT_POINTING_ENABLE
+// #define POINTING_DEVICE_LEFT
 
 #define FORCED_SYNC_THROTTLE_MS 100
 #define SPLIT_MAX_CONNECTION_ERRORS 10
@@ -65,7 +70,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 // // Joystick setup
-// #define JOYSTICK_BUTTON_COUNT 1
+#define JOYSTICK_BUTTON_COUNT 0
 // #define JOY_BUTTON_PIN B5
 // // #define JOY_BUTTON_KEY JS_0
 // #define JOY_BUTTON_KEY KC_X
@@ -81,7 +86,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_SPEED_REGULATOR 20
 #define ANALOG_JOYSTICK_SPEED_MAX 2
 #define ANALOG_JOYSTICK_CLICK_PIN A0
-#define POINTING_DEVICE_LEFT
 
 
 // #define DEBUG_MATRIX_SCAN_RATE

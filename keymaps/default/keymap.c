@@ -7,8 +7,6 @@
 int16_t joyXMid = JOYSTICK_AXIS_MAX/2;
 int16_t joyYMid = JOYSTICK_AXIS_MAX/2;
 
-void scan_joystick_button(void);
-
 // Custom tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
