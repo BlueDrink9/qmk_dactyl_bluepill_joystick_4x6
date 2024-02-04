@@ -63,6 +63,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_SPEED_REGULATOR 20
 #define ANALOG_JOYSTICK_SPEED_MAX 2
 #define ANALOG_JOYSTICK_CLICK_PIN A0
+// Sets ranges to be considered movement automatically.
+#define ANALOG_JOYSTICK_AUTO_AXIS
+// Use custom weights for lever positions for smooth accelleration and fine adjustment.
+#define ANALOG_JOYSTICK_WEIGHTS
+// Cut off movement when joystick returns to start position.
+#define ANALOG_JOYSTICK_CUTOFF
 
 
 #define GRAVE_ESC_CTRL_OVERRIDE
