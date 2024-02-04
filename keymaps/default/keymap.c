@@ -4,8 +4,8 @@
 #include "print.h"
 #include "joystick.h"
 
-int16_t joyXMid = JOYSTICK_AXIS_MAX/2;
-int16_t joyYMid = JOYSTICK_AXIS_MAX/2;
+int16_t joyXMid = ANALOG_JOYSTICK_AXIS_MAX/2;
+int16_t joyYMid = ANALOG_JOYSTICK_AXIS_MAX/2;
 
 // Custom tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -184,8 +184,8 @@ void keyboard_pre_init_user(void) {
 }
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_X_AXIS_PIN, JOYSTICK_AXIS_MAX, JOYSTICK_AXIS_MAX/2, 0), // X, Low(L) ~ High(R)
-    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, JOYSTICK_AXIS_MAX, JOYSTICK_AXIS_MAX/2, 0), // Y, Low(U) ~ High(D)
+    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_X_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, 0), // X, Low(L) ~ High(R)
+    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, 0), // Y, Low(U) ~ High(D)
 };
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {

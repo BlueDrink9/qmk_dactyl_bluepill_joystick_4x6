@@ -56,8 +56,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_Y_AXIS_PIN B1
 // Min 8, max 16
 #define JOYSTICK_AXIS_RESOLUTION 12
-#define JOYSTICK_AXIS_MAX 4095
 #define ANALOG_JOYSTICK_AXIS_MAX 4095
+// Small dead zone of 10% to prevent mouse drift
+#define ANALOG_JOYSTICK_AXIS_MIN 400
 // Lower makes movement faster
 #define ANALOG_JOYSTICK_SPEED_REGULATOR 20
 #define ANALOG_JOYSTICK_SPEED_MAX 2
