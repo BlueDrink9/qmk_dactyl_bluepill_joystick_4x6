@@ -24,23 +24,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 /* split config */
-// Use these if I decide to solder-specify handedness - which I probably
-// should do tbh
-// #define SPLIT_HAND_PIN B7
+// If soldered
 // #define    SPLIT_HAND_PIN_LOW_IS_LEFT
+// Matrix with missing slot
+#define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGHT
 // USB cable goes into left
 #define MASTER_LEFT
+// #define MASTER_RIGHT
+
 
 // Only actually need these for visual state display
 // #define SPLIT_LAYER_STATE_ENABLE
 // #define SPLIT_MODS_ENABLE
 
-// #define SPLIT_POINTING_ENABLE
-// #define POINTING_DEVICE_LEFT
+// If right is master, enables left pointing device
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_LEFT
 
 #define FORCED_SYNC_THROTTLE_MS 100
 #define SPLIT_MAX_CONNECTION_ERRORS 10
-// #define SERIAL_USART_TX_PIN A2 
+// #define SERIAL_USART_TX_PIN A2  // Set in json as soft_serial_pin
 // Because A2 is tx2, not tx1
 #define SERIAL_USART_DRIVER SD2
 
@@ -62,7 +65,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Lower makes movement faster
 #define ANALOG_JOYSTICK_SPEED_REGULATOR 20
 #define ANALOG_JOYSTICK_SPEED_MAX 2
-#define ANALOG_JOYSTICK_CLICK_PIN A0
+// #define ANALOG_JOYSTICK_CLICK_PIN A0
 // Sets ranges to be considered movement automatically.
 #define ANALOG_JOYSTICK_AUTO_AXIS
 // Use custom weights for lever positions for smooth accelleration and fine adjustment.
