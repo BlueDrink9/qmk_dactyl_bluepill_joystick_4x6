@@ -18,8 +18,8 @@
     "debounce": 10,
     "split": {
         // Which pin carries serial between the two halves - link to TRS cable
-        // Apparently needs to be a TX pin
-        "soft_serial_pin": "A2",
+        // Apparently needs to be a TX pin. B10 is 5V tolerant USART TX3
+        "soft_serial_pin": "B10",
         // "bootmagic": {
         //     "matrix": [6, 5]
         // },

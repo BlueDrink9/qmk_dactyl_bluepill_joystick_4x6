@@ -43,9 +43,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define FORCED_SYNC_THROTTLE_MS 100
 #define SPLIT_MAX_CONNECTION_ERRORS 10
-// #define SERIAL_USART_TX_PIN A2  // Set in json as soft_serial_pin
-// Because A2 is tx2, not tx1
-#define SERIAL_USART_DRIVER SD2
+// Because serial pin is tx3, not tx1
+#define SERIAL_USART_DRIVER SD3
 
 
 // // Joystick setup
