@@ -12,7 +12,7 @@
     },
     "matrix_pins": {
         "cols": ["B13", "B14", "B15", "A8", "A9", "A10"],
-        "rows": ["B9", "B8", "B7", "B6", "A0", "A1"]
+        "rows": ["B9", "B8", "B7", "B6", "A1", "A0"]
     },
     "diode_direction": "ROW2COL",
     "debounce": 10,
@@ -132,18 +132,20 @@
                 // {"matrix": [10, 4], "x": 13, "y": 4},
                 // {"matrix": [10, 5], "x": 14, "y": 4},
 
-                // Thumb cluster left
+                // Thumb cluster top left
                 {"matrix": [4, 3], "x": 6, "y": 5},
                 {"matrix": [4, 4], "x": 7, "y": 5},
                 {"matrix": [4, 5], "x": 8, "y": 5},
-                {"matrix": [5, 3], "x": 6, "y": 6},
-                {"matrix": [5, 4], "x": 7, "y": 6},
-                {"matrix": [5, 5], "x": 8, "y": 6},
-
-                // Thumb cluster right
+                // Thumb cluster top right
                 {"matrix": [10, 0], "x": 9, "y": 5},
                 {"matrix": [10, 1], "x": 10, "y": 5},
                 {"matrix": [10, 2], "x": 11, "y": 5},
+
+                // Thumb cluster bot left
+                {"matrix": [5, 3], "x": 6, "y": 6},
+                {"matrix": [5, 4], "x": 7, "y": 6},
+                {"matrix": [5, 5], "x": 8, "y": 6},
+                // Thumb cluster bot right
                 {"matrix": [11, 0], "x": 6, "y": 6},
                 {"matrix": [11, 1], "x": 7, "y": 6},
                 {"matrix": [11, 2], "x": 8, "y": 6}
