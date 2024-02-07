@@ -69,5 +69,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Cut off movement when joystick returns to start position.
 #define ANALOG_JOYSTICK_CUTOFF
 
+// Docs say I can move this to info.json but compiler complains
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
+#define CAPS_WORD_IDLE_TIMEOUT 3000 
 
 #define GRAVE_ESC_CTRL_OVERRIDE

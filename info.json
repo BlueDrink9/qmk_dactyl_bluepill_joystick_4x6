@@ -51,11 +51,13 @@
         "pointing_device": true,
         "lto": true,
         "dynamic_macro": true,
-        "caps_word": {
-            "enabled": true,
-            "both_shifts_turns_on": true,
-            "idle_timeout": 3000,
-        },
+        "caps_word": true,
+        // Docs say I can move this to info.json but compiler complains
+        // "caps_word": {
+        //     "enabled": true,
+        //     "both_shifts_turns_on": true,
+        //     "idle_timeout": 3000,
+        // },
         "key_override": true,
         "dynamic_tapping_term": false,
     },
