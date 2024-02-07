@@ -20,6 +20,8 @@
         // Which pin carries serial between the two halves - link to TRS cable
         // Apparently needs to be a TX pin. B10 is 5V tolerant USART TX3
         "soft_serial_pin": "B10",
+        "transport": {"protocol": "serial_usart"},
+        "usb_detect": {"enabled": true},
         // "bootmagic": {
         //     "matrix": [6, 5]
         // },
@@ -74,7 +76,6 @@
     "layouts": {
         "LAYOUT": {
             "layout": [
-                // Right half rows start at row 6
                 {"matrix": [0, 0], "x": 0, "y": 0},
                 {"matrix": [0, 1], "x": 1, "y": 0},
                 {"matrix": [0, 2], "x": 2, "y": 0},
@@ -82,6 +83,7 @@
                 {"matrix": [0, 4], "x": 4, "y": 0},
                 {"matrix": [0, 5], "x": 5, "y": 0},
 
+                // Right half rows start at row 6
                 {"matrix": [6, 0], "x": 11, "y": 0},
                 {"matrix": [6, 1], "x": 12, "y": 0},
                 {"matrix": [6, 2], "x": 13, "y": 0},
@@ -130,20 +132,6 @@
                 {"matrix": [9, 3], "x": 14, "y": 3},
                 {"matrix": [9, 4], "x": 15, "y": 3},
                 {"matrix": [9, 5], "x": 16, "y": 3},
-
-                // {"matrix": [4, 0], "x": 2, "y": 4},
-                // {"matrix": [4, 1], "x": 3, "y": 4},
-                // {"matrix": [4, 2], "x": 5, "y": 4},
-                // {"matrix": [4, 3], "x": 6, "y": 4},
-                // {"matrix": [4, 4], "x": 7, "y": 4},
-                // {"matrix": [4, 5], "x": 8, "y": 4},
-
-                // {"matrix": [10, 0], "x": 9, "y": 4},
-                // {"matrix": [10, 1], "x": 10, "y": 4},
-                // {"matrix": [10, 2], "x": 11, "y": 4},
-                // {"matrix": [10, 3], "x": 12, "y": 4},
-                // {"matrix": [10, 4], "x": 13, "y": 4},
-                // {"matrix": [10, 5], "x": 14, "y": 4},
 
                 // Thumb cluster top left
                 {"matrix": [4, 3], "x": 3, "y": 4},

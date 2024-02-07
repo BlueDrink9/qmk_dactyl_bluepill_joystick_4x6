@@ -20,9 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* General feel settings */
 
-#define USB_SUSPEND_WAKEUP_DELAY 0
-
-
 /* split config */
 // If soldered
 // #define    SPLIT_HAND_PIN_LOW_IS_LEFT
