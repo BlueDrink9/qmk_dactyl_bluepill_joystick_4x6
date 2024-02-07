@@ -1,8 +1,7 @@
 #include QMK_KEYBOARD_H
-#include "analog.h"
-// #include "quantum.h"
+#ifdef CONSOLE_ENABLE
 #include "print.h"
-#include "joystick.h"
+#endif
 
 int16_t joyXMid = ANALOG_JOYSTICK_AXIS_MAX/2;
 int16_t joyYMid = ANALOG_JOYSTICK_AXIS_MAX/2;

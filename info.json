@@ -1,13 +1,13 @@
 {
-    "keyboard_name": "Dactyl-Manuform (4x6)",
+    "keyboard_name": "Dactyl-Manuform (4x6_cf)",
     "manufacturer": "tshort",
     "url": "",
     "maintainer": "jceb",
     "processor": "STM32F103",
     "bootloader": "stm32duino",
     "usb": {
-        "vid": "0x444D",
-        "pid": "0x3536",
+        "vid": "0x5342",  // ascii SB
+        "pid": "0x0001",
         "device_version": "0.0.2"
     },
     "matrix_pins": {
