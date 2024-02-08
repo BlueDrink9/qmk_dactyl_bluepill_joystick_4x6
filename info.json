@@ -11,8 +11,8 @@
         "device_version": "0.0.2"
     },
     "matrix_pins": {
-        "cols": ["B13", "B14", "B15", "A8", "A9", "A10"],
-        "rows": ["B9", "B8", "B7", "B6", "A1", "A0"]
+        "cols": ["A10", "A9", "A8", "B15", "B14", "B13"],
+        "rows": ["B6", "B7", "B8", "B9", "A0", "A1"],
     },
     "diode_direction": "ROW2COL",
     "debounce": 10,
