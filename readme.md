@@ -71,7 +71,7 @@ Variants with VIA support:
 
 Flashing example for this keyboard:
 
-    dfu-util -a 2 -d 1EAF:0003 -D .build/handwired_my_dactyl_default.bin
+    dfu-util -a -w 2 -d 1EAF:0003 -D .build/handwired_my_dactyl_default.bin
 
 ## Handedness configurations
 
