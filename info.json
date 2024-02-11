@@ -20,7 +20,8 @@
         // Which pin carries serial between the two halves - link to TRS cable
         // Apparently needs to be a TX pin. B10 is 5V tolerant USART TX3
         "soft_serial_pin": "B10",
-        "transport": {"protocol": "serial_usart"},
+        "transport": {"protocol": "serial"},
+        //  "transport": {"protocol": "serial_usart"},
         "usb_detect": {"enabled": true},
         // "bootmagic": {
         //     "matrix": [6, 5]
@@ -48,7 +49,7 @@
         "split_keyboard": true,
         "analog_driver": true,
         "joystick": true,
-        "pointing_device": true,
+        // "pointing_device": true,
         "lto": true,
         "dynamic_macro": true,
         "caps_word": true,

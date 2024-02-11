@@ -38,11 +38,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_POINTING_ENABLE
 #define POINTING_DEVICE_LEFT
 
-#define FORCED_SYNC_THROTTLE_MS 100
-#define SPLIT_MAX_CONNECTION_ERRORS 10
 // Because serial pin is tx3, not tx1
 #define SERIAL_USART_DRIVER SD3
-
+// Only got second half working with
+// this speed + bitbang. USART half
+// duplex didn't work.
+#define SELECT_SOFT_SERIAL_SPEED 2
 
 // // Joystick setup
 #define JOYSTICK_BUTTON_COUNT 0
