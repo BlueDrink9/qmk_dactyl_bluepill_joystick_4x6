@@ -26,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Matrix with missing slot
 // #define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGHT
 // USB cable goes into left
-#define MASTER_LEFT
-// #define MASTER_RIGHT
+// #define MASTER_LEFT
+#define MASTER_RIGHT
 
 // Only actually need these for visual state display
 // #define SPLIT_LAYER_STATE_ENABLE
@@ -45,7 +45,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define SPLIT_CONNECTION_CHECK_TIMEOUT 2000
 // #define FORCED_SYNC_THROTTLE_MS 1
 #define SERIAL_DEBUG
+#define SPLIT_USB_DETECT
+#define SPLIT_USB_TIMEOUT 3500
 
+#define SPLIT_WATCHDOG_ENABLE
+#define SPLIT_WATCHDOG_TIMEOUT 5000
 
 
 // // Joystick setup
