@@ -24,26 +24,29 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // If soldered
 // #define    SPLIT_HAND_PIN_LOW_IS_LEFT
 // Matrix with missing slot
-#define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGHT
+// #define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGHT
 // USB cable goes into left
 #define MASTER_LEFT
 // #define MASTER_RIGHT
-
 
 // Only actually need these for visual state display
 // #define SPLIT_LAYER_STATE_ENABLE
 // #define SPLIT_MODS_ENABLE
 
 // If right is master, enables left pointing device
-#define SPLIT_POINTING_ENABLE
-#define POINTING_DEVICE_LEFT
+// #define SPLIT_POINTING_ENABLE
+// #define POINTING_DEVICE_LEFT
 
-// Because serial pin is tx3, not tx1
-#define SERIAL_USART_DRIVER SD3
 // Only got second half working with
-// this speed + bitbang. USART half
+// speed 2 + bitbang. USART half
 // duplex didn't work.
 #define SELECT_SOFT_SERIAL_SPEED 2
+// #define SPLIT_MAX_CONNECTION_ERRORS 50
+// #define SPLIT_CONNECTION_CHECK_TIMEOUT 2000
+// #define FORCED_SYNC_THROTTLE_MS 1
+#define SERIAL_DEBUG
+
+
 
 // // Joystick setup
 #define JOYSTICK_BUTTON_COUNT 0
