@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 QK_GRAVE_ESCAPE, KC_1, KC_2, KC_3, KC_4, LT(SPECIAL, KC_5),    KC_6, KC_7, KC_8, KC_9, KC_0, LT(SPECIAL, KC_EQL),
 KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,    KC_Y, KC_U, KC_I, KC_O, KC_P, TD(TD_SNAKE_CASE),
 KC_BSPC, KC_A, MT(MOD_LALT, KC_S), MT(MOD_LGUI, KC_D), MT(MOD_LCTL, KC_F), KC_G,    KC_H, MT(MOD_RCTL, KC_J), MT(MOD_RGUI, KC_K), MT(MOD_RALT, KC_L), KC_SEMICOLON, KC_QUOT,
-LSFT_T(KC_LEFT_BRACKET), KC_Z, KC_X, KC_C, LT(VIM,KC_V), KC_B,     KC_N, LT(VIM,KC_M), KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_RIGHT_BRACKET),
+LSFT_T(KC_LEFT_BRACKET), MT(MOD_RCTL, KC_Z), KC_X, KC_C, LT(VIM,KC_V), KC_B,     KC_N, LT(VIM,KC_M), KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_RIGHT_BRACKET),
 
     // Left cluster has joystick in top right position.
     KC_SPC, KC_BACKSPACE, KC_MS_BTN1,       KC_APP, TT(NUMBERS),      KC_RIGHT_SHIFT,
@@ -74,7 +74,7 @@ LSFT_T(KC_LEFT_BRACKET), KC_Z, KC_X, KC_C, LT(VIM,KC_V), KC_B,     KC_N, LT(VIM,
 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS,
 KC_TRNS, KC_Q,    KC_W,    KC_F,    KC_P,          KC_G,    KC_J,    KC_L,          KC_U,    KC_Y,    KC_SEMICOLON, KC_TRNS,
 KC_TRNS, KC_A, MT(MOD_LALT, KC_R), MT(MOD_LGUI, KC_S), MT(MOD_LCTL, KC_T), KC_D,    KC_H, MT(MOD_RCTL, KC_N), MT(MOD_RGUI, KC_E), MT(MOD_RALT, KC_I), KC_O, KC_TRNS,
-KC_TRNS, KC_Z,    KC_X,    KC_C,    LT(VIM, KC_V), KC_B,    KC_K,    LT(VIM, KC_M), KC_COMM, KC_DOT,  KC_SLSH,      KC_TRNS,
+KC_TRNS, MT(MOD_RCTL, KC_Z),    KC_X,    KC_C,    LT(VIM, KC_V), KC_B,    KC_K,    LT(VIM, KC_M), KC_COMM, KC_DOT,  KC_SLSH,      KC_TRNS,
 
 KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,
 KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
@@ -94,7 +94,7 @@ KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
   [VIM] = LAYOUT(
 TG(VIM), DM_RSTP,   DM_PLY1, DM_PLY2,   KC_END,       KC_TRNS,       KC_TRNS,        KC_TRNS,  KC_TRNS,    KC_TRNS,    KC_HOME,    KC_TRNS,
 DM_REC2, DM_REC1, LCTL(KC_RIGHT),  KC_TRNS,   LCTL(KC_V),   TD(TD_VIM_GG),   KC_DOWN,        KC_RIGHT, LCTL(KC_Z), LCTL(KC_C), KC_TRNS,    KC_TRNS,
-KC_TRNS, KC_END,         KC_BACKSPACE,       KC_TRNS,   KC_TRNS,      LCTL(KC_X),    LCTL(KC_RIGHT), TG(VIM),    NEWLINE_AFTER, KC_TRNS, KC_TRNS,    KC_TRNS,
+KC_TRNS, KC_END,   KC_BACKSPACE,    KC_TRNS,   KC_TRNS, LCTL(KC_X),    KC_LEFT, KC_TRNS, TL(KC_RIGHT), TG(VIM),    NEWLINE_AFTER, KC_TRNS,
 MO(VIM_SHIFTED),   KC_TRNS,        KC_DELETE,       KC_CUT, TD(TD_VISUAL_V), LCTL(KC_LEFT), KC_UP,          KC_TRNS,  KC_TRNS,    KC_TRNS,    LCTL(KC_F), MO(VIM_SHIFTED),
 
 KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, MO(VIM_SHIFTED) ,
@@ -104,7 +104,7 @@ KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
   [VIM_SHIFTED] = LAYOUT(
     KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_END,     KC_TRNS,      KC_HOME, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, PASTE_UP, LCTL(KC_END), KC_TRNS, KC_TRNS, KC_TRNS,    YANK_EOL, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_END,  KC_TRNS,   KC_TRNS, KC_TRNS,    CUT_EOL,   KC_TRNS, KC_HOME, NEWLINE_UP, KC_TRNS,    KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_END,  KC_TRNS,   KC_TRNS, KC_TRNS,    CUT_EOL,      KC_TRNS,KC_TRNS, KC_TRNS, KC_HOME, NEWLINE_UP, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_BACKSPACE, KC_TRNS, SELECT_LINE, KC_TRNS,      KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS,    KC_TRNS, KC_TRNS,
 
 KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,
@@ -168,6 +168,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
+
+
+  #ifdef JOYSTICK_ENABLE
+        int16_t x = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
+        int16_t y = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
+
+        // Print the X and Y values
+        uprintf("Joystick adc X: %d, Y: %d\n", x, y);
+  #endif
+
 #endif
   return true;
 }
@@ -175,16 +185,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_pre_init_user(void) {
     // Set mid based on current resting position
-    // if ((joyXMid != analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN))|
-    //       (joyYMid != analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN))) {
-    //     joyXMid = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
-    //     joyYMid = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
-    // }
+    if ((joyXMid != analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN))|
+          (joyYMid != analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN))) {
+        joyXMid = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
+        joyYMid = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
+    }
 }
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_X_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, 0), // X, Low(L) ~ High(R)
-    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, 0), // Y, Low(U) ~ High(D)
+    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_X_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, ANALOG_JOYSTICK_AXIS_MIN), // X, Low(L) ~ High(R)
+    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, ANALOG_JOYSTICK_AXIS_MIN) // Y, Low(U) ~ High(D)
 };
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {

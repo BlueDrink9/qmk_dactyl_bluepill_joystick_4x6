@@ -26,8 +26,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Matrix with missing slot
 // #define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGHT
 // USB cable goes into left
-// #define MASTER_LEFT
-#define MASTER_RIGHT
+#define MASTER_LEFT
+// #define MASTER_RIGHT
 
 // Only actually need these for visual state display
 // #define SPLIT_LAYER_STATE_ENABLE
@@ -44,8 +44,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define SPLIT_MAX_CONNECTION_ERRORS 50
 // #define SPLIT_CONNECTION_CHECK_TIMEOUT 2000
 // #define FORCED_SYNC_THROTTLE_MS 1
-#define SERIAL_DEBUG
-#define SPLIT_USB_DETECT
+
+// #define SERIAL_DEBUG
 #define SPLIT_USB_TIMEOUT 3500
 
 #define SPLIT_WATCHDOG_ENABLE
@@ -63,17 +63,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_Y_AXIS_PIN B1
 // Min 8, max 16
 #define JOYSTICK_AXIS_RESOLUTION 12
-#define ANALOG_JOYSTICK_AXIS_MAX 4095
-// Small dead zone of 10% to prevent mouse drift
-#define ANALOG_JOYSTICK_AXIS_MIN 400
+#define ANALOG_JOYSTICK_AXIS_MAX 1024
+// Small dead zone to prevent mouse drift
+#define ANALOG_JOYSTICK_AXIS_MIN 0
 // Lower makes movement faster
-#define ANALOG_JOYSTICK_SPEED_REGULATOR 20
-#define ANALOG_JOYSTICK_SPEED_MAX 2
+#define ANALOG_JOYSTICK_SPEED_REGULATOR 30
+#define ANALOG_JOYSTICK_SPEED_MAX 4
 // #define ANALOG_JOYSTICK_CLICK_PIN A0
 // Sets ranges to be considered movement automatically.
 #define ANALOG_JOYSTICK_AUTO_AXIS
 // Use custom weights for lever positions for smooth accelleration and fine adjustment.
-#define ANALOG_JOYSTICK_WEIGHTS
+#define ANALOG_JOYSTICK_WEIGHTS {0,2,4,5,7,8,9,10,12,13,14,15,15,16,17,18,18,19,19,20,20,21,21,21,22,22,22,22,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,23,24,24,24,24,24,24,25,25,25,26,26,26,27,28,28,29,29,30,31,32,33,34,35,36,37,38,40,41,43,44,46,48,49,51,53,56,58,60,62,65,68,70,73,76,79,82,85,89,92,96,100}
 // Cut off movement when joystick returns to start position.
 #define ANALOG_JOYSTICK_CUTOFF
 
