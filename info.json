@@ -42,7 +42,7 @@
         "magic": false,
         "command": false,
         "console": true,
-        "combo": false,
+        "combo": true,
         "extrakey": true,
         "mousekey": true,
         "nkro": true,
