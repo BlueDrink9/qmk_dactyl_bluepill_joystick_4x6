@@ -64,15 +64,13 @@
         "dynamic_tapping_term": false,
     },
     "tapping": {
-        "term": 200,
+        "term": 185,
         "term_per_key": false,
         // "toggle": 2,
-        // Enables This makes it easier for fast typists to use dual-function keys
-        "permissive_hold": true,
+        "permissive_hold": false,
     },
     "mousekey": {
-        "interval": 15,
-        "delay":       0,
+        "interval": 15, "delay":       0,
         "time_to_max": 60,
         "max_speed":   7,
         "wheel_delay": 0,
