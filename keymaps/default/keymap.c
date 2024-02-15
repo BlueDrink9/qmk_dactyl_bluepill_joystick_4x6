@@ -40,6 +40,7 @@ enum tap_dance_codes {
   TD_BOF_EOF,
   TD_VOLDOWN_MUTE,
   TD_PAUSEPLAY,
+  TD_SLASH_MENU,
 };
 
 
@@ -65,8 +66,7 @@ KC_BSPC, KC_A, MT(MOD_LCTL, KC_S), MT(MOD_LGUI, KC_D), MT(MOD_LALT, KC_F), KC_G,
 LSFT_T(KC_LEFT_BRACKET), MT(MOD_RCTL, KC_Z), KC_X, MT(MOD_LALT, KC_C), LT(VIM,KC_V), KC_B,     KC_N, LT(VIM,KC_M), KC_COMM, KC_DOT, KC_SLSH, RSFT_T(KC_RIGHT_BRACKET),
 
     // Left cluster has joystick in top right position.
-    KC_SPC, KC_BACKSPACE, KC_MS_BTN1,       KC_APP, TT(NUMBERS),      KC_RIGHT_SHIFT,
-    // Temporary bootloader key on layer 0 so I don't forget to include one while debugging
+    KC_SPC, KC_BACKSPACE, KC_MS_BTN1,       TD(TD_SLASH_MENU), TT(NUMBERS),      KC_RIGHT_SHIFT,
     KC_DEL, MT(MOD_RALT, KC_ENTER), TT(SPECIAL),      LALT(KC_TAB), TT(SPECIAL), KC_ENTER
 ),
 
@@ -124,9 +124,9 @@ KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
 
   [SPECIAL] = LAYOUT(
     TO(QWERTY), TO(QWERTY), TO(COLEMAK),       TO(SPECIAL),    TO(NUMBERS),      KC_SYSTEM_SLEEP,       QK_BOOT,         KC_TRNS,       KC_TRNS,    KC_TRNS,        KC_PRINT_SCREEN, KC_SYRQ,
-    KC_TRNS,         KC_TRNS, KC_MS_WH_LEFT, KC_MS_UP,   KC_MS_WH_RIGHT, KC_TRNS,       KC_TRNS, KC_HOME, KC_UP,   KC_END, KC_TRNS,    KC_TRNS,
+    QK_BOOT,         KC_TRNS, KC_MS_WH_LEFT, KC_MS_UP,   KC_MS_WH_RIGHT, KC_TRNS,       KC_TRNS, KC_HOME, KC_UP,   KC_END, KC_TRNS,    KC_TRNS,
     KC_CAPS_LOCK,     KC_TRNS, KC_MS_LEFT,    KC_MS_DOWN, KC_MS_RIGHT,    KC_MS_WH_UP,   KC_PGUP,  KC_LEFT,    KC_DOWN, KC_RIGHT,    KC_TRNS,    KC_TRNS,
-    QK_BOOT,         KC_TRNS, KC_MS_BTN2,     KC_MS_BTN3, KC_MS_BTN1,   KC_MS_WH_DOWN,     KC_PGDN,  KC_TRNS,       KC_TRNS,    KC_UP,          KC_TRNS,    KC_TRNS,
+    KC_TRNS,        KC_TRNS, KC_MS_BTN2,     KC_MS_BTN3, KC_MS_BTN1,   KC_MS_WH_DOWN,     KC_PGDN,  KC_TRNS,       KC_TRNS,    KC_UP,          KC_TRNS,    KC_TRNS,
 
   TD(TD_VOLDOWN_MUTE), KC_AUDIO_VOL_UP, KC_MS_BTN3,       KC_PGUP, KC_MS_BTN2, KC_MS_BTN1,
   KC_MEDIA_PREV_TRACK, TD(TD_PAUSEPLAY), KC_TRNS,       KC_PGDN, KC_TRNS, KC_MS_BTN3
@@ -559,6 +559,7 @@ tap_dance_action_t tap_dance_actions[] = {
         // [TD_PAUSEPLAY] = ACTION_TAP_DANCE_FN_ADVANCED(on_td_pauseplay, td_pauseplay_finished, td_pauseplay_reset),
         [TD_VOLDOWN_MUTE] = ACTION_TAP_DANCE_HOLD(KC_AUDIO_VOL_DOWN, KC_AUDIO_MUTE),
         [TD_PAUSEPLAY] = ACTION_TAP_DANCE_HOLD(KC_MEDIA_PLAY_PAUSE, KC_MEDIA_NEXT_TRACK),
+        [TD_SLASH_MENU] = ACTION_TAP_DANCE_HOLD(KC_BACKSLASH, KC_MENU),
 };
 
 
@@ -567,7 +568,7 @@ const key_override_t override_shift_bs_del = ko_make_basic(MOD_MASK_SHIFT, KC_BS
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
-    &override_shift_bs_del,
+    // &override_shift_bs_del,
     NULL // Null terminate the array of overrides!
 };
 
