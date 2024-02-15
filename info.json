@@ -64,10 +64,10 @@
         "dynamic_tapping_term": false,
     },
     "tapping": {
-        "term": 185,
+        "term": 250,
         "term_per_key": false,
         // "toggle": 2,
-        "permissive_hold": false,
+        "permissive_hold": true,
     },
     "mousekey": {
         "interval": 15, "delay":       0,
