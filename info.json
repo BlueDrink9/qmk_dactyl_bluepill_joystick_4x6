@@ -51,7 +51,7 @@
         "analog_driver": true,
         "joystick": true,
         "pointing_device": true,
-        "lto": true,
+        // "lto": true,
         "dynamic_macro": true,
         "caps_word": true,
         // Docs say I can move this to info.json but compiler complains
@@ -64,10 +64,11 @@
         "dynamic_tapping_term": false,
     },
     "tapping": {
-        "term": 250,
-        "term_per_key": false,
+        "term": 120,
+        "term_per_key": true,
         // "toggle": 2,
-        "permissive_hold": true,
+        "permissive_hold": false,
+        "quick_tap_term": 150,
     },
     "mousekey": {
         "interval": 15, "delay":       0,
