@@ -1,0 +1,5 @@
+info_clean.json
+*.pdf
+*.svg
+keymap_drawer.yaml
+keymap.json
