@@ -25,6 +25,7 @@ draw: $(layer_drawing)
 $(layer_drawing): $(keymap_folder)/keymap_drawer.yaml info_clean.json
 	keymap draw $< -j  $(word 2,$^) >| $@.svg
 	inkscape --export-pdf=$@ $@.svg
+	rm $(keymap_folder)/keymap.json 
 
 $(keymap_folder)/keymap.json: $(keymap_folder)/keymap.c
 	qmk c2json $< >| $@
