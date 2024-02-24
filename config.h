@@ -30,9 +30,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define SPLIT_LAYER_STATE_ENABLE
 // #define SPLIT_MODS_ENABLE
 
-// If right is master, enables left pointing device
-// #define SPLIT_POINTING_ENABLE
-// #define POINTING_DEVICE_LEFT
+// Enables left pointer even when right is master
+#define SPLIT_POINTING_ENABLE
+#define POINTING_DEVICE_LEFT
 
  #define SERIAL_USART_DRIVER SD3
 // Only got second half working with
