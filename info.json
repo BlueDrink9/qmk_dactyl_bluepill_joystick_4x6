@@ -27,15 +27,10 @@
         // "bootmagic": {
         //     "matrix": [6, 5]
         // },
-        // "handedness": {
-            // Use these if I decide to solder-specify handedness - which I probably
-            // should do tbh
-            // "pin": "C13"
-            // If this position in matrix is empty, treat as left.
-            // On left board, thumb cluster is at end of column rather
-            // than start, so matrix 5,0 is empty on left but used on right.
-        //     "matrix_grid": ["A10", "B9"],
-        // }
+        "handedness": {
+            // Diode soldered directly between these columns on left board
+            "matrix_grid": ["A10", "A1"],
+        }
     },
     "features": {
         "bootmagic": false,

@@ -23,9 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* split config */
 // If soldered
 // #define    SPLIT_HAND_PIN_LOW_IS_LEFT
-// Matrix with missing slot. Bottom right key on the left. Hold it on bootup.
-#define SPLIT_HAND_MATRIX_GRID B13,A1
-// #define SPLIT_HAND_MATRIX_GRID_LOW_IS_RIGHT
 // USB cable goes into left
 // #define MASTER_LEFT
 // #define MASTER_RIGHT
