@@ -45,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_MAX_CONNECTION_ERRORS 100
 #define SPLIT_CONNECTION_CHECK_TIMEOUT 100
 #define FORCED_SYNC_THROTTLE_MS 100
+ #define SERIAL_USART_DRIVER SD3
 
 // #define SERIAL_DEBUG
 #define SPLIT_USB_TIMEOUT 3500
