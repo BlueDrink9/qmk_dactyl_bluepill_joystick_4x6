@@ -18,11 +18,18 @@
     },
     // Other pins in use: B10, B0, B1
     "split": {
+        "enabled": true,
         // Which pin carries serial between the two halves - link to TRS cable
-        // Apparently needs to be a TX pin. B10 is 5V tolerant USART TX3
+        // Needs to be a TX pin, and B10 is Blupill's 5V tolerant USART TX3
         "soft_serial_pin": "B10",
-        // "transport": {"protocol": "serial"},
-        "transport": {"protocol": "serial_usart"},
+        "transport": {
+            "protocol": "serial_usart",
+            "sync": {
+                // "pointer": true,
+                "indicators": true,
+            },
+            "watchdog": true,
+        },
         "usb_detect": {"enabled": true},
         // "bootmagic": {
         //     "matrix": [6, 5]
@@ -30,7 +37,7 @@
         "handedness": {
             // Diode soldered directly between these columns on left board
             "matrix_grid": ["A10", "A1"],
-        }
+        },
     },
     "features": {
         "bootmagic": false,
@@ -70,6 +77,10 @@
         "time_to_max": 60,
         "max_speed":   7,
         "wheel_delay": 0,
+    },
+    "indicators": {
+        "caps_lock": "C13",
+        "on_state": 0,
     },
     "layouts": {
         "LAYOUT": {

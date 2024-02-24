@@ -35,6 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define POINTING_DEVICE_LEFT
 
  #define SERIAL_USART_DRIVER SD3
+#define SERIAL_DEBUG
+
 // Only got second half working with
 // speed 2 + bitbang. USART half
 // duplex didn't work.
@@ -43,32 +45,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define SPLIT_CONNECTION_CHECK_TIMEOUT 100
 // #define FORCED_SYNC_THROTTLE_MS 100
 
-// #define SERIAL_DEBUG
 // #define SPLIT_USB_TIMEOUT 3500
 // #define SPLIT_USB_TIMEOUT_POLL 5
 
-// #define SPLIT_WATCHDOG_ENABLE
-// #define SPLIT_WATCHDOG_TIMEOUT 7000
-
-
 // // Joystick setup
 #define JOYSTICK_BUTTON_COUNT 0
-// #define JOY_BUTTON_PIN B5
-// // #define JOY_BUTTON_KEY JS_0
-// #define JOY_BUTTON_KEY KC_X
-// Min 0, max 6: X, Y, Z, Rx, Ry, Rz
 #define JOYSTICK_AXIS_COUNT 2
 #define ANALOG_JOYSTICK_X_AXIS_PIN B0
 #define ANALOG_JOYSTICK_Y_AXIS_PIN B1
-// Min 8, max 16
 #define JOYSTICK_AXIS_RESOLUTION 12
 #define ANALOG_JOYSTICK_AXIS_MAX 1024
-// Small dead zone to prevent mouse drift
+// Small dead zone to prevent mouse drift?
 #define ANALOG_JOYSTICK_AXIS_MIN 0
 // Lower makes movement faster
 #define ANALOG_JOYSTICK_SPEED_REGULATOR 15
 #define ANALOG_JOYSTICK_SPEED_MAX 3
-// #define ANALOG_JOYSTICK_CLICK_PIN A0
 // Sets ranges to be considered movement automatically.
 #define ANALOG_JOYSTICK_AUTO_AXIS
 // Use custom weights for lever positions for smooth accelleration and fine adjustment.
