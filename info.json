@@ -66,7 +66,7 @@
         "dynamic_tapping_term": false,
     },
     "tapping": {
-        "term": 120,
+        "term": 185,
         "term_per_key": true,
         // "toggle": 2,
         "permissive_hold": false,
