@@ -25,6 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // useful. (Matrix handedness only works when both are connected)
 // #define MASTER_LEFT
 // #define MASTER_RIGHT
+#define SPLIT_HAND_MATRIX_GRID_LOW_IS_LEFT
 
 // Only actually need these for visual state display
 // #define SPLIT_LAYER_STATE_ENABLE
