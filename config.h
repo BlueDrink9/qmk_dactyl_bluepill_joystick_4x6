@@ -57,6 +57,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Cut off movement while joystick returns to start position.
 #define ANALOG_JOYSTICK_CUTOFF
 
+// Deadzones in percent
+#define ANALOG_JOYSTICK_X_AXIS_DEADZONE 3;
+#define ANALOG_JOYSTICK_Y_AXIS_DEADZONE 3;
+
 // Docs say I can move this to info.json but compiler complains
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_IDLE_TIMEOUT 3000 
