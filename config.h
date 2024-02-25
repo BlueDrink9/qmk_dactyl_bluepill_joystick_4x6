@@ -35,19 +35,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_POINTING_ENABLE
 #define POINTING_DEVICE_LEFT
 
- #define SERIAL_USART_DRIVER SD3
+#define SERIAL_USART_DRIVER SD3
 #define SERIAL_DEBUG
-
-// Only got second half working with
-// speed 2 + bitbang. USART half
-// duplex didn't work.
-// #define SELECT_SOFT_SERIAL_SPEED 2
-// #define SPLIT_MAX_CONNECTION_ERRORS 100
-// #define SPLIT_CONNECTION_CHECK_TIMEOUT 100
-// #define FORCED_SYNC_THROTTLE_MS 100
-
-// #define SPLIT_USB_TIMEOUT 3500
-// #define SPLIT_USB_TIMEOUT_POLL 5
 
 // // Joystick setup
 #define JOYSTICK_BUTTON_COUNT 0
