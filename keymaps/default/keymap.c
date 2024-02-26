@@ -18,10 +18,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-// enum tap_dance_actions_enum {
-//       TD_LAYER_TOGGLE
-// };
-
 enum custom_keycodes {
   NEWLINE_AFTER = SAFE_RANGE,
   PASTE_UP,
@@ -41,6 +37,7 @@ enum tap_dance_codes {
   TD_VOLDOWN_MUTE,
   TD_PAUSEPLAY,
   TD_SLASH_MENU,
+  TD_ARRAY_SIZE,
 };
 
 
@@ -254,7 +251,7 @@ enum {
     MORE_TAPS
 };
 
-static tap dance_state[14];
+static tap dance_state[TD_ARRAY_SIZE];
 
 uint8_t dance_step(tap_dance_state_t *state);
 
