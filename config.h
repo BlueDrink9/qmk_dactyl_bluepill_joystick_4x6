@@ -48,8 +48,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Small dead zone to prevent mouse drift?
 #define ANALOG_JOYSTICK_AXIS_MIN 0
 // Lower makes movement faster
-#define ANALOG_JOYSTICK_SPEED_REGULATOR 15
-#define ANALOG_JOYSTICK_SPEED_MAX 3
+#define ANALOG_JOYSTICK_SPEED_REGULATOR 20
+#define ANALOG_JOYSTICK_SPEED_MAX 2
 // Sets ranges to be considered movement automatically.
 #define ANALOG_JOYSTICK_AUTO_AXIS
 // Use custom weights for lever positions for smooth accelleration and fine adjustment.
@@ -64,6 +64,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // Docs say I can move this to info.json but compiler complains
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
 #define CAPS_WORD_IDLE_TIMEOUT 3000 
+
+#define PERMISSIVE_HOLD_PER_KEY
 
 #define GRAVE_ESC_CTRL_OVERRIDE
 
