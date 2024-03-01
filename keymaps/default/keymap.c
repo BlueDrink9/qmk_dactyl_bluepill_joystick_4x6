@@ -57,7 +57,7 @@ enum layer_names {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [QWERTY] = LAYOUT(
-KC_ESC, KC_1, KC_2, KC_3, KC_4, LT(SPECIAL, KC_5),        KC_6, KC_7, KC_8, KC_9, KC_0, LT(SPECIAL, KC_EQL),
+QK_GRAVE_ESCAPE, KC_1, KC_2, KC_3, KC_4, LT(SPECIAL, KC_5),        KC_6, KC_7, KC_8, KC_9, KC_0, LT(SPECIAL, KC_EQL),
 KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,        KC_Y, KC_U, KC_I, KC_O, KC_P, TD(TD_SNAKE_CASE),
 KC_BSPC, KC_A, MT(MOD_LCTL, KC_S), MT(MOD_LGUI, KC_D), MT(MOD_LALT, KC_F), KC_G,        KC_H, MT(MOD_RALT, KC_J), MT(MOD_RGUI, KC_K), MT(MOD_RCTL, KC_L), KC_SEMICOLON, KC_QUOT,
 LSFT_T(KC_LEFT_BRACKET), MT(MOD_LCTL, KC_Z), LT(SPECIAL, KC_X), LT(NUMBERS, KC_C), LT(VIM,KC_V), MT(MOD_LALT, KC_B),        KC_N, LT(VIM,KC_M), LT(NUMBERS, KC_COMM), LT(SPECIAL, KC_DOT), MT(MOD_RCTL, KC_SLSH), RSFT_T(KC_RIGHT_BRACKET),
@@ -570,9 +570,11 @@ const key_override_t **key_overrides = (const key_override_t *[]){
 };
 
 const uint16_t PROGMEM ctrlshift_combo[] = {LSFT_T(KC_LEFT_BRACKET), KC_BACKSPACE, COMBO_END};
-const uint16_t PROGMEM shiftEscGrave_combo[] = {OSM(MOD_RSFT), KC_ESC, COMBO_END};
+// bypass QK_GRAVE_ESCAPE for shift + esc. Does require quite fast tapping
+// though
+const uint16_t PROGMEM shiftEsc_combo[] = {LSFT_T(KC_LEFT_BRACKET), QK_GRAVE_ESCAPE, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(ctrlshift_combo, LCTL(KC_LSFT)),
-    COMBO(shiftEscGrave_combo, LSFT(KC_GRAVE)),
+    COMBO(shiftEsc_combo, LSFT(KC_ESC)),
 };
