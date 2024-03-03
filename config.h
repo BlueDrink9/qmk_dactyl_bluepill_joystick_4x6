@@ -68,6 +68,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD_PER_KEY
 
 #define GRAVE_ESC_CTRL_OVERRIDE
+#define COMBO_TERM 100  // default 50
+
+#define INDICATOR_LED_PIN_RIGHT A2
+#define INDICATOR_LED_PIN_LEFT A3
 
 /* Miryoku */
 #define BILATERAL_COMBINATIONS_LIMIT_CHORD_TO_N_KEYS 4 /* GUI, Alt, Ctrl, Shift */

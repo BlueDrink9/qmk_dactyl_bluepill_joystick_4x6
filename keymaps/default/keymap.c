@@ -187,6 +187,10 @@ void keyboard_pre_init_user(void) {
         joyXMid = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
         joyYMid = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
     }
+
+    // Init LEDs
+    setPinOutput(INDICATOR_LED_PIN_LEFT);
+    setPinOutput(INDICATOR_LED_PIN_RIGHT);
 }
 
 joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
@@ -194,46 +198,79 @@ joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
     JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, ANALOG_JOYSTICK_AXIS_MIN) // Y, Low(U) ~ High(D)
 };
 
-bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case NEWLINE_AFTER:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_END) SS_DELAY(100) SS_TAP(X_ENTER));
-    }
-    break;
-    case PASTE_UP:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LCTL(SS_TAP(X_V)) SS_DELAY(100) SS_TAP(X_ENTER));
-    }
-    break;
-    case CUT_EOL:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(100) SS_LCTL(SS_TAP(X_X)));
-    }
-    break;
-    case SELECT_LINE:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LSFT(SS_TAP(X_END)));
-    }
-    break;
-    case YANK_EOL:
-    if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(100) SS_LCTL(SS_TAP(X_C)));
-    }
-    break;
-    case NEWLINE_UP:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(100) SS_TAP(X_LEFT));
-    }
-    break;
-    case PASTE_REPLACE:
-    if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_DELETE) SS_DELAY(100) SS_LCTL(SS_TAP(X_V)));
-    }
-    break;
 
-  }
-  return true;
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case QWERTY:
+            writePinHigh(INDICATOR_LED_PIN_LEFT);
+            writePinHigh(INDICATOR_LED_PIN_RIGHT);
+            break;
+        case COLEMAK:
+            writePinLow(INDICATOR_LED_PIN_LEFT);
+            writePinHigh(INDICATOR_LED_PIN_RIGHT);
+            break;
+        case SPECIAL:
+            writePinLow(INDICATOR_LED_PIN_RIGHT);
+            writePinLow(INDICATOR_LED_PIN_LEFT);
+            break;
+        case NUMBERS:
+            writePinLow(INDICATOR_LED_PIN_RIGHT);
+            writePinHigh(INDICATOR_LED_PIN_LEFT);
+            break;
+        case VIM:
+        case VIM_VISUAL:
+        case VIM_SHIFTED:
+            writePinLow(INDICATOR_LED_PIN_LEFT);
+            writePinLow(INDICATOR_LED_PIN_RIGHT);
+            break;
+        default:
+            writePinLow(INDICATOR_LED_PIN_LEFT);
+            writePinLow(INDICATOR_LED_PIN_RIGHT);
+            break;
+    }
+    return state;
+}
+
+bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case NEWLINE_AFTER:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_END) SS_DELAY(100) SS_TAP(X_ENTER));
+            }
+            break;
+        case PASTE_UP:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LCTL(SS_TAP(X_V)) SS_DELAY(100) SS_TAP(X_ENTER));
+            }
+            break;
+        case CUT_EOL:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(100) SS_LCTL(SS_TAP(X_X)));
+            }
+            break;
+        case SELECT_LINE:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_LSFT(SS_TAP(X_END)));
+            }
+            break;
+        case YANK_EOL:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LSFT(SS_TAP(X_END)) SS_DELAY(100) SS_LCTL(SS_TAP(X_C)));
+            }
+            break;
+        case NEWLINE_UP:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_HOME) SS_DELAY(100) SS_TAP(X_ENTER) SS_DELAY(100) SS_TAP(X_LEFT));
+            }
+            break;
+        case PASTE_REPLACE:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_DELETE) SS_DELAY(100) SS_LCTL(SS_TAP(X_V)));
+            }
+            break;
+
+    }
+    return true;
 }
 
 
