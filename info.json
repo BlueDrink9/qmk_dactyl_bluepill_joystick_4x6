@@ -16,7 +16,7 @@
         "cols": ["A10", "A9", "A8", "B15", "B14", "B13"],
         "rows": ["B6", "B7", "B8", "B9", "A0", "A1"],
     },
-    // Other pins in use: B10, B0, B1
+    // Other pins in use: B10 (trs), B0, B1 (joy), A2, A3 (pwm LEDs). 
     "split": {
         "enabled": true,
         // Which pin carries serial between the two halves - link to TRS cable
@@ -27,6 +27,10 @@
             "sync": {
                 // "pointer": true,
                 "indicators": true,
+                "modifiers": true,
+                "matrix_state": true,
+                "activity": true,
+                "layer_state": true,
             },
             "watchdog": true,
         },
@@ -64,6 +68,7 @@
         // },
         "key_override": true,
         "dynamic_tapping_term": false,
+        // "backlight": true,
     },
     "tapping": {
         "term": 185,
@@ -78,10 +83,10 @@
         "max_speed":   7,
         "wheel_delay": 0,
     },
-    "indicators": {
-        "caps_lock": "C13",
-        "on_state": 0,
-    },
+    // "indicators": {
+    //     "num_lock": "A2",
+    //     "on_state": 0,
+    // },
     "layouts": {
         "LAYOUT": {
             "layout": [
