@@ -560,21 +560,32 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 
-// Send delete with shift+bs
-const key_override_t override_shift_bs_del = ko_make_basic(MOD_MASK_SHIFT, KC_BSPC, KC_DEL);
+// Send delete with shift+bs, but only left shift. Right stays normal
+// backspace to avoid generating it while backspacing capital words.
+const key_override_t override_shift_bs_del = ko_make_basic(MOD_LSFT, KC_BSPC, KC_DEL);
+// Left shift sends shift esc, for e.g. Chrome task manager.
+const key_override_t override_shift_esc = ko_make_basic(MOD_LSFT, QK_GRAVE_ESCAPE, S(KC_ESC));
+// Right ctrl + esc sends ctrl+esc, left sents backtick.
+const key_override_t override_lctl_grave = ko_make_basic(MOD_LCTL, QK_GRAVE_ESCAPE, KC_GRAVE);
+const key_override_t override_rgui_backtick = ko_make_basic(MOD_RGUI, QK_GRAVE_ESCAPE, RGUI(KC_ESC));
+
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
-    // &override_shift_bs_del,
+    &override_shift_bs_del,
+    &override_shift_esc,
+    &override_lctl_grave,
+    &override_rgui_backtick,
     NULL // Null terminate the array of overrides!
 };
 
 const uint16_t PROGMEM ctrlshift_combo[] = {LSFT_T(KC_LEFT_BRACKET), KC_BACKSPACE, COMBO_END};
 // bypass QK_GRAVE_ESCAPE for shift + esc. Does require quite fast tapping
 // though
-const uint16_t PROGMEM shiftEsc_combo[] = {LSFT_T(KC_LEFT_BRACKET), QK_GRAVE_ESCAPE, COMBO_END};
+// const uint16_t PROGMEM shiftEsc_combo[] = {LSFT_T(KC_LEFT_BRACKET), QK_GRAVE_ESCAPE, COMBO_END};
 
 combo_t key_combos[] = {
     COMBO(ctrlshift_combo, LCTL(KC_LSFT)),
-    COMBO(shiftEsc_combo, LSFT(KC_ESC)),
+    // COMBO(shiftEsc_combo, LSFT(KC_ESC)),
+    // NULL
 };
