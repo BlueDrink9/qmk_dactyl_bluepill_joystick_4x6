@@ -182,8 +182,8 @@ static PWMConfig pwmCFG = {
     256,/* initial PWM period (in ticks) 1S (1/10kHz=0.1mS 0.1ms*10000 ticks=1S) */
     NULL,
     {
-        {PWM_OUTPUT_DISABLED, NULL}, /* channel 0 -> TIM1-CH1 = PA8 */
-        {PWM_OUTPUT_DISABLED, NULL}, /* channel 1 -> TIM1-CH2 = PA9 */
+        {PWM_OUTPUT_DISABLED, NULL}, /* channel 0  */
+        {PWM_OUTPUT_DISABLED, NULL}, /* channel 1  */
         {PWM_OUTPUT_ACTIVE_LOW, NULL},
         {PWM_OUTPUT_ACTIVE_LOW, NULL}
     },
@@ -193,9 +193,12 @@ static PWMConfig pwmCFG = {
 
 void keyboard_pre_init_user(void) {
     // Init LEDs. Both are off on 1, on at 0 (wired to vcc).
-    setPinOutput(INDICATOR_LED_PIN_LEFT);
-    setPinOutput(INDICATOR_LED_PIN_RIGHT);
-    pwmStart(&PWMD2, &pwmCFG);
+    // setPinOutput(INDICATOR_LED_PIN_LEFT);
+    // setPinOutput(INDICATOR_LED_PIN_RIGHT);
+    pwmDisableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_RIGHT);
+    pwmDisableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_LEFT);
+    pwmStart(INDICATOR_LED_PWM, &pwmCFG);
+    palSetPadMode(GPIOA, 3, PAL_MODE_ALTERNATE_PUSHPULL);
 }
 
 // static uint16_t led_breathe_timer;
@@ -213,10 +216,10 @@ void keyboard_pre_init_user(void) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
         case QWERTY:
-            pwmEnableChannel(&PWMD2, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(&PWMD2, 0xFFFF, 100));
+            pwmEnableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(INDICATOR_LED_PWM, 0xFFFF, 100));
             break;
         case SPECIAL:
-            pwmEnableChannel(&PWMD2, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(&PWMD2, 0xFFFF, 0));
+            pwmEnableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(INDICATOR_LED_PWM, 0xFFFF, 0));
             break;
         default:
             break;

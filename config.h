@@ -71,6 +71,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define INDICATOR_LED_PIN_LEFT A3
 #define INDICATOR_LED_CHANNEL_RIGHT 3
 #define INDICATOR_LED_CHANNEL_LEFT 4
+#define INDICATOR_LED_PWM &PWMD2
+
 
 // #define BACKLIGHT_PIN A3
 // #define BACKLIGHT_PINS { A2, A3 }
