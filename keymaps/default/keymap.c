@@ -177,10 +177,25 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 
+static PWMConfig pwmCFG = {
+    0xFFFF,/* PWM clock frequency  */
+    256,/* initial PWM period (in ticks) 1S (1/10kHz=0.1mS 0.1ms*10000 ticks=1S) */
+    NULL,
+    {
+        {PWM_OUTPUT_DISABLED, NULL}, /* channel 0 -> TIM1-CH1 = PA8 */
+        {PWM_OUTPUT_DISABLED, NULL}, /* channel 1 -> TIM1-CH2 = PA9 */
+        {PWM_OUTPUT_ACTIVE_LOW, NULL},
+        {PWM_OUTPUT_ACTIVE_LOW, NULL}
+    },
+    0, /* HW dependent part.*/
+    0
+};
+
 void keyboard_pre_init_user(void) {
     // Init LEDs. Both are off on 1, on at 0 (wired to vcc).
     setPinOutput(INDICATOR_LED_PIN_LEFT);
     setPinOutput(INDICATOR_LED_PIN_RIGHT);
+    pwmStart(&PWMD2, &pwmCFG);
 }
 
 // static uint16_t led_breathe_timer;
