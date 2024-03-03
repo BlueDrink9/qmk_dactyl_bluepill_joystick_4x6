@@ -559,7 +559,6 @@ tap_dance_action_t tap_dance_actions[] = {
         [TD_SLASH_MENU] = ACTION_TAP_DANCE_HOLD(KC_BACKSLASH, KC_MENU),
 };
 
-
 // Send delete with shift+bs, but only left shift. Right stays normal
 // backspace to avoid generating it while backspacing capital words.
 const key_override_t override_shift_bs_del = ko_make_basic(MOD_LSFT, KC_BSPC, KC_DEL);
