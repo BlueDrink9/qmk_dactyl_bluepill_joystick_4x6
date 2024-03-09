@@ -34,7 +34,10 @@
             },
             "watchdog": true,
         },
-        "usb_detect": {"enabled": true},
+        "usb_detect": {
+            "enabled": true,
+            "timeout": 1000,
+        },
         // "bootmagic": {
         //     "matrix": [6, 5]
         // },
@@ -51,7 +54,7 @@
         "combo": true,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true,
+        "nkro": false,
         "tap_dance": true,
         "split_keyboard": true,
         "analog_driver": true,
