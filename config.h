@@ -69,6 +69,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define INDICATOR_LED_PIN_RIGHT A2
 #define INDICATOR_LED_PIN_LEFT A3
+#define INDICATOR_LED_CHANNEL_RIGHT 3
+#define INDICATOR_LED_CHANNEL_LEFT 4
+
+// #define BACKLIGHT_PIN A3
+// #define BACKLIGHT_PINS { A2, A3 }
+// #define BACKLIGHT_BREATHING
+// #define BACKLIGHT_ON_STATE 0
+// #define BACKLIGHT_DEFAULT_BREATHING true
 
 /* Miryoku */
 #define BILATERAL_COMBINATIONS_LIMIT_CHORD_TO_N_KEYS 4 /* GUI, Alt, Ctrl, Shift */

@@ -178,12 +178,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 void keyboard_pre_init_user(void) {
-    // Init LEDs
+    // Init LEDs. Both are off on 1, on at 0 (wired to vcc).
     setPinOutput(INDICATOR_LED_PIN_LEFT);
     setPinOutput(INDICATOR_LED_PIN_RIGHT);
 }
 
+// static uint16_t led_breathe_timer;
+// void led_breathe(uint8_t led_pin, int smoothness_pts){
+//     for (int ii=0;ii<smoothness_pts;ii++){
+//         float pwm_val = 255.0*(1.0 -  abs((2.0*(ii/smoothness_pts))-1.0));
+//         analogWrite(led_pin, int(pwm_val));
+//         delay(5);
+//     }
+// }
+
+#include <ch.h>
+#include <hal.h>
+
 layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case QWERTY:
+            pwmEnableChannel(&PWMD2, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(&PWMD2, 0xFFFF, 100));
+            break;
+        case SPECIAL:
+            pwmEnableChannel(&PWMD2, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(&PWMD2, 0xFFFF, 0));
+            break;
+        default:
+            break;
+    }
+    return state;
     switch (get_highest_layer(state)) {
         case QWERTY:
             writePinHigh(INDICATOR_LED_PIN_LEFT);
