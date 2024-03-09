@@ -38,12 +38,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SERIAL_USART_DRIVER SD3
 #define SERIAL_DEBUG
 
-// // Joystick setup
-#define JOYSTICK_BUTTON_COUNT 0
-#define JOYSTICK_AXIS_COUNT 2
+// Joystick setup
 #define ANALOG_JOYSTICK_X_AXIS_PIN B0
 #define ANALOG_JOYSTICK_Y_AXIS_PIN B1
-#define JOYSTICK_AXIS_RESOLUTION 12
 #define ANALOG_JOYSTICK_AXIS_MAX 1024
 // Small dead zone to prevent mouse drift?
 #define ANALOG_JOYSTICK_AXIS_MIN 0

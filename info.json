@@ -58,7 +58,7 @@
         "tap_dance": true,
         "split_keyboard": true,
         "analog_driver": true,
-        "joystick": true,
+        "joystick": false,
         "pointing_device": true,
         // "lto": true,
         "dynamic_macro": true,

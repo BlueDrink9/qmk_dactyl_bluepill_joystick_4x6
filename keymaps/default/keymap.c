@@ -3,9 +3,6 @@
 #include "print.h"
 #endif
 
-int16_t joyXMid = ANALOG_JOYSTICK_AXIS_MAX/2;
-int16_t joyYMid = ANALOG_JOYSTICK_AXIS_MAX/2;
-
 // Custom tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
@@ -167,7 +164,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     uprintf("KL: kc: 0x%04X, col: %2u, row: %2u, pressed: %u, time: %5u, int: %u, count: %u\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed, record->event.time, record->tap.interrupted, record->tap.count);
 
 
-  #ifdef JOYSTICK_ENABLE
+  #if defined JOYSTICK_ENABLE || defined POINTING_DEVICE_DRIVER
         int16_t x = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
         int16_t y = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
 
@@ -181,23 +178,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
 void keyboard_pre_init_user(void) {
-    // Set mid based on current resting position
-    if ((joyXMid != analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN))|
-          (joyYMid != analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN))) {
-        joyXMid = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
-        joyYMid = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
-    }
-
     // Init LEDs
     setPinOutput(INDICATOR_LED_PIN_LEFT);
     setPinOutput(INDICATOR_LED_PIN_RIGHT);
 }
-
-joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_X_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, ANALOG_JOYSTICK_AXIS_MIN), // X, Low(L) ~ High(R)
-    JOYSTICK_AXIS_IN(ANALOG_JOYSTICK_Y_AXIS_PIN, ANALOG_JOYSTICK_AXIS_MAX, ANALOG_JOYSTICK_AXIS_MAX/2, ANALOG_JOYSTICK_AXIS_MIN) // Y, Low(U) ~ High(D)
-};
-
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
