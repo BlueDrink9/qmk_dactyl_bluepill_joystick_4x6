@@ -181,6 +181,9 @@ void keyboard_pre_init_user(void) {
     breathing_init();
 }
 
+
+bool leds_set_by_layer_change;
+
 static const uint16_t breathing_table_dim_narrow_gaussian[BREATHING_STEPS] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,3,4,5,6,8,10,12,14,17,20,23,28,32,38,44,50,57,65,74,84,94,105,116,129,142,155,169,183,197,211,225,239,253,266,278,289,300,309,316,323,328,331,333,333,331,328,323,316,309,300,289,278,266,253,239,225,211,197,183,169,155,142,129,116,105,94,84,74,65,57,50,44,38,32,28,23,20,17,14,12,10,8,6,5,4,3,2,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 layer_state_t layer_state_set_user(layer_state_t state) {
@@ -194,7 +197,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case SPECIAL:
             pwm_on(BREATHING_LED_CHANNEL_LEFT);
-            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 2);
+            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 3);
             break;
         case NUMBERS:
             start_breathing(BREATHING_LED_CHANNEL_RIGHT, 4);
@@ -204,13 +207,32 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case VIM_VISUAL:
         case VIM_SHIFTED:
-            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 1);
             pwm_on(BREATHING_LED_CHANNEL_LEFT);
+            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 1);
             break;
         default:
             break;
     }
+    leds_set_by_layer_change = true;
     return state;
+}
+
+bool led_update_user(led_t led_state) {
+    if (!leds_set_by_layer_change) {
+        stop_breathing(BREATHING_LED_CHANNEL_RIGHT);
+        stop_breathing(BREATHING_LED_CHANNEL_LEFT);
+        // retrigger layer indicator code
+        layer_state_set_user(layer_state);
+    }
+    leds_set_by_layer_change = false;
+    if (led_state.caps_lock){
+        pwm_on(BREATHING_LED_CHANNEL_RIGHT);
+        pwm_on(BREATHING_LED_CHANNEL_LEFT);
+    }
+    if (led_state.num_lock){
+        // pwm_on(BREATHING_LED_CHANNEL_RIGHT);
+    }
+    return true;
 }
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
