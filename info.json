@@ -25,12 +25,12 @@
         "transport": {
             "protocol": "serial_usart",
             "sync": {
-                // "pointer": true,
-                "indicators": true,
-                "modifiers": true,
-                "matrix_state": true,
                 "activity": true,
                 "layer_state": true,
+                "indicators": true,
+                "matrix_state": true,
+                "modifiers": true,
+                // "pointer": true,
             },
             "watchdog": true,
         },
@@ -86,10 +86,10 @@
         "max_speed":   7,
         "wheel_delay": 0,
     },
-    // "indicators": {
+    "indicators": {
     //     "num_lock": "A5",
     //     "on_state": 0,
-    // },
+    },
     "layouts": {
         "LAYOUT": {
             "layout": [

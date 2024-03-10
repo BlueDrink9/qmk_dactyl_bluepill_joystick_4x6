@@ -3,6 +3,7 @@
 #include "print.h"
 #endif
 #include "features/breathing/breathing.h"
+#include "features/layer_lock.h"
 
 // Custom tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -24,6 +25,7 @@ enum custom_keycodes {
   YANK_EOL,
   NEWLINE_UP,
   PASTE_REPLACE,
+  LAYER_LOCK,
 };
 
 enum tap_dance_codes {
@@ -78,7 +80,7 @@ KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS
     [NUMBERS] = LAYOUT(
 
 KC_GRAVE, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5,        KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11,
-KC_TRNS, KC_GRAVE, KC_GRAVE, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_BACKSLASH, KC_BACKSLASH, KC_MINUS, KC_EQL, KC_F12,
+LAYER_LOCK, KC_GRAVE, KC_GRAVE, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_BACKSLASH, KC_BACKSLASH, KC_MINUS, KC_EQL, KC_F12,
 KC_TRNS, KC_1, KC_2, KC_3, KC_4, KC_5,        KC_6, KC_7, KC_8, KC_9, KC_0, KC_BACKSLASH,
 KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_BACKSLASH, KC_TRNS, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_TRNS,
 
@@ -87,9 +89,9 @@ KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS
 ),
 
   [VIM] = LAYOUT(
-TG(VIM), DM_RSTP, DM_PLY1, DM_PLY2, KC_END, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_TRNS,
+LAYER_LOCK, DM_RSTP, DM_PLY1, DM_PLY2, KC_END, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_HOME, KC_TRNS,
 DM_REC2, DM_REC1, LCTL(KC_RIGHT), KC_TRNS, LCTL(KC_V), TD(TD_VIM_GG),        KC_DOWN, KC_RIGHT, LCTL(KC_Z), LCTL(KC_C), KC_TRNS, KC_TRNS,
-KC_TRNS, KC_END, KC_BACKSPACE, KC_TRNS, KC_TRNS, LCTL(KC_X),        KC_LEFT, KC_TRNS, LCTL(KC_RIGHT), TG(VIM), NEWLINE_AFTER, KC_TRNS,
+KC_TRNS, KC_END, KC_BACKSPACE, KC_TRNS, KC_TRNS, LCTL(KC_X),        KC_LEFT, KC_TRNS, LCTL(KC_RIGHT), LAYER_LOCK, NEWLINE_AFTER, KC_TRNS,
 MO(VIM_SHIFTED), KC_TRNS, KC_DELETE, KC_CUT, TD(TD_VISUAL_V), LCTL(KC_LEFT),        KC_UP, KC_TRNS, KC_TRNS, KC_TRNS, LCTL(KC_E), MO(VIM_SHIFTED),
 
 KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, MO(VIM_SHIFTED) ,
@@ -118,7 +120,7 @@ KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS
 
 
   [SPECIAL] = LAYOUT(
-    TO(QWERTY), TO(QWERTY), TO(COLEMAK), TO(SPECIAL), TO(NUMBERS), KC_SYSTEM_SLEEP,        QK_BOOT, KC_TRNS, KC_TRNS, KC_TRNS, KC_PRINT_SCREEN, KC_SYRQ,
+LAYER_LOCK, TO(QWERTY), TO(COLEMAK), TO(SPECIAL), TO(NUMBERS), KC_SYSTEM_SLEEP,        QK_BOOT, KC_TRNS, KC_TRNS, KC_TRNS, KC_PRINT_SCREEN, KC_SYRQ,
     KC_TRNS, KC_TRNS, KC_MS_WH_LEFT, KC_MS_UP, KC_MS_WH_RIGHT, QK_BOOT,        QK_BOOT, KC_HOME, KC_UP, KC_END, KC_TRNS, QK_BOOT,
     KC_CAPS_LOCK, KC_TRNS, KC_MS_LEFT, KC_MS_DOWN, KC_MS_RIGHT, KC_MS_WH_UP,        KC_PGUP, KC_LEFT, KC_DOWN, KC_RIGHT, KC_TRNS, KC_TRNS,
     QK_RBT, KC_TRNS, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, KC_MS_WH_DOWN,        KC_PGDN, OSM(MOD_RALT), OSM(MOD_RGUI), OSM(MOD_RCTL), KC_TRNS, QK_RBT,
@@ -159,6 +161,7 @@ void keyboard_post_init_user(void) {
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record);
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_layer_lock(keycode, record, LAYER_LOCK)) { return false; }
     handle_macro_presses(keycode, record);
   // If console is enabled, it will print the matrix position and status of each key pressed
 #ifdef CONSOLE_ENABLE
