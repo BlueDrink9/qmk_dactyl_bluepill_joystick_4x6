@@ -199,8 +199,11 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
         case VIM:
             start_breathing(BREATHING_LED_CHANNEL_RIGHT, 1);
+            break;
         case VIM_VISUAL:
         case VIM_SHIFTED:
+            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 1);
+            pwm_on(BREATHING_LED_CHANNEL_LEFT);
             break;
         default:
             break;
