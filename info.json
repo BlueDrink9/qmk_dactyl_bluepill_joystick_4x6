@@ -71,7 +71,7 @@
         // },
         "key_override": true,
         "dynamic_tapping_term": false,
-        // "backlight": true,
+        "backlight": false,
     },
     "tapping": {
         "term": 185,
@@ -87,7 +87,7 @@
         "wheel_delay": 0,
     },
     // "indicators": {
-    //     "num_lock": "A2",
+    //     "num_lock": "A5",
     //     "on_state": 0,
     // },
     "layouts": {

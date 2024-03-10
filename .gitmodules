@@ -1,0 +1,3 @@
+[submodule "keymaps/default/features/breathing"]
+	path = keymaps/default/features/breathing
+	url = git@github.com:BlueDrink9/qmk_breathing_led.git

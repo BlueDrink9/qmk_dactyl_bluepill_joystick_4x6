@@ -2,6 +2,7 @@
 #ifdef CONSOLE_ENABLE
 #include "print.h"
 #endif
+#include "features/breathing/breathing.h"
 
 // Custom tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -176,81 +177,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 
-
-static PWMConfig pwmCFG = {
-    0xFFFF,/* PWM clock frequency  */
-    256,/* initial PWM period (in ticks) 1S (1/10kHz=0.1mS 0.1ms*10000 ticks=1S) */
-    NULL,
-    {
-        {PWM_OUTPUT_DISABLED, NULL}, /* channel 0  */
-        {PWM_OUTPUT_DISABLED, NULL}, /* channel 1  */
-        {PWM_OUTPUT_ACTIVE_LOW, NULL},
-        {PWM_OUTPUT_ACTIVE_LOW, NULL}
-    },
-    0, /* HW dependent part.*/
-    0
-};
-
 void keyboard_pre_init_user(void) {
-    // Init LEDs. Both are off on 1, on at 0 (wired to vcc).
-    // setPinOutput(INDICATOR_LED_PIN_LEFT);
-    // setPinOutput(INDICATOR_LED_PIN_RIGHT);
-    pwmDisableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_RIGHT);
-    pwmDisableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_LEFT);
-    pwmStart(INDICATOR_LED_PWM, &pwmCFG);
-    palSetPadMode(GPIOA, 3, PAL_MODE_ALTERNATE_PUSHPULL);
+    breathing_init();
 }
 
-// static uint16_t led_breathe_timer;
-// void led_breathe(uint8_t led_pin, int smoothness_pts){
-//     for (int ii=0;ii<smoothness_pts;ii++){
-//         float pwm_val = 255.0*(1.0 -  abs((2.0*(ii/smoothness_pts))-1.0));
-//         analogWrite(led_pin, int(pwm_val));
-//         delay(5);
-//     }
-// }
-
-#include <ch.h>
-#include <hal.h>
-
 layer_state_t layer_state_set_user(layer_state_t state) {
+    stop_breathing(BREATHING_LED_CHANNEL_RIGHT);
+    stop_breathing(BREATHING_LED_CHANNEL_LEFT);
     switch (get_highest_layer(state)) {
         case QWERTY:
-            pwmEnableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(INDICATOR_LED_PWM, 0xFFFF, 100));
-            break;
-        case SPECIAL:
-            pwmEnableChannel(INDICATOR_LED_PWM, INDICATOR_LED_CHANNEL_RIGHT, PWM_FRACTION_TO_WIDTH(INDICATOR_LED_PWM, 0xFFFF, 0));
-            break;
-        default:
-            break;
-    }
-    return state;
-    switch (get_highest_layer(state)) {
-        case QWERTY:
-            writePinHigh(INDICATOR_LED_PIN_LEFT);
-            writePinHigh(INDICATOR_LED_PIN_RIGHT);
             break;
         case COLEMAK:
-            writePinLow(INDICATOR_LED_PIN_LEFT);
-            writePinHigh(INDICATOR_LED_PIN_RIGHT);
+            start_breathing(BREATHING_LED_CHANNEL_LEFT, 4);
             break;
         case SPECIAL:
-            writePinLow(INDICATOR_LED_PIN_RIGHT);
-            writePinLow(INDICATOR_LED_PIN_LEFT);
+            pwm_on(BREATHING_LED_CHANNEL_LEFT);
+            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 2);
             break;
         case NUMBERS:
-            writePinLow(INDICATOR_LED_PIN_RIGHT);
-            writePinHigh(INDICATOR_LED_PIN_LEFT);
+            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 4);
             break;
         case VIM:
+            start_breathing(BREATHING_LED_CHANNEL_RIGHT, 1);
         case VIM_VISUAL:
         case VIM_SHIFTED:
-            writePinLow(INDICATOR_LED_PIN_LEFT);
-            writePinLow(INDICATOR_LED_PIN_RIGHT);
             break;
         default:
-            writePinLow(INDICATOR_LED_PIN_LEFT);
-            writePinLow(INDICATOR_LED_PIN_RIGHT);
             break;
     }
     return state;
