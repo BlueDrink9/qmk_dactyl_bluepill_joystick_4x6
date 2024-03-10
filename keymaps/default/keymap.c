@@ -181,6 +181,8 @@ void keyboard_pre_init_user(void) {
     breathing_init();
 }
 
+static const uint16_t breathing_table_dim_narrow_gaussian[BREATHING_STEPS] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,3,4,5,6,8,10,12,14,17,20,23,28,32,38,44,50,57,65,74,84,94,105,116,129,142,155,169,183,197,211,225,239,253,266,278,289,300,309,316,323,328,331,333,333,331,328,323,316,309,300,289,278,266,253,239,225,211,197,183,169,155,142,129,116,105,94,84,74,65,57,50,44,38,32,28,23,20,17,14,12,10,8,6,5,4,3,2,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+
 layer_state_t layer_state_set_user(layer_state_t state) {
     stop_breathing(BREATHING_LED_CHANNEL_RIGHT);
     stop_breathing(BREATHING_LED_CHANNEL_LEFT);
@@ -188,7 +190,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         case QWERTY:
             break;
         case COLEMAK:
-            start_breathing(BREATHING_LED_CHANNEL_LEFT, 4);
+            start_breathing_with_pattern(BREATHING_LED_CHANNEL_LEFT, 3, breathing_table_dim_narrow_gaussian);
             break;
         case SPECIAL:
             pwm_on(BREATHING_LED_CHANNEL_LEFT);
