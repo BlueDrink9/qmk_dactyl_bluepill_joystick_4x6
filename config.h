@@ -27,16 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 #define SPLIT_HAND_MATRIX_GRID_LOW_IS_LEFT
 
-// Only actually need these for visual state display
-// #define SPLIT_LAYER_STATE_ENABLE
-// #define SPLIT_MODS_ENABLE
-
 // Enables left pointer even when right is master
 #define SPLIT_POINTING_ENABLE
 #define POINTING_DEVICE_LEFT
 
 #define SERIAL_USART_DRIVER SD3
-#define SERIAL_DEBUG
+
+// #define SERIAL_DEBUG
 
 // Joystick setup
 #define ANALOG_JOYSTICK_X_AXIS_PIN B0
@@ -48,15 +45,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_SPEED_REGULATOR 20
 #define ANALOG_JOYSTICK_SPEED_MAX 2
 // Sets ranges to be considered movement automatically.
-#define ANALOG_JOYSTICK_AUTO_AXIS
+// #define ANALOG_JOYSTICK_AUTO_AXIS
 // Use custom weights for lever positions for smooth accelleration and fine adjustment.
-#define ANALOG_JOYSTICK_WEIGHTS { 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 8 , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21 , 22 , 23 , 24 , 25 , 26 , 28 , 29 , 30 , 31 , 32 , 33 , 34 , 35 , 36 , 37 , 38 , 39 , 40 , 41 , 42 , 43 , 44 , 45 , 46 , 47 , 48 , 49 , 50 , 51 , 52 , 53 , 54 , 55 , 56 , 57 , 58 , 59 , 60 , 61 , 62 , 63 , 65 , 66 , 67 , 68 , 69 , 70 , 71 , 72 , 73 , 74 , 75 , 76 , 77 , 78 , 79 , 80 , 81 , 82 , 83 , 84 , 85 , 86 , 87 , 88 , 89 , 90 , 91 , 92 , 93 , 94 , 95 , 96 , 97 , 98 , 99 , 100 }
+#define ANALOG_JOYSTICK_WEIGHTS { 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 1 , 8 , 9 , 10 , 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20 , 21 , 22 , 23 , 24 , 25 , 26 , 28 , 29 , 30 , 31 , 32 , 33 , 34 , 35 , 36 , 37 , 38 , 39 , 40 , 41 , 42 , 43 , 44 , 45 , 46 , 47 , 48 , 49 , 50 , 51 , 52 , 53 , 54 , 55 , 56 , 57 , 58 , 59 , 60 , 61 , 62 , 63 , 65 , 66 , 67 , 68 , 69 , 70 , 71 , 72 , 73 , 74 , 75 , 76 , 77 , 78 , 79 , 80 , 81 , 82 , 83 , 84 , 85 , 86 , 87 , 88 , 89 , 90 , 91 , 92 , 93 , 94 , 95 , 96 , 97 , 98 , 99 , 100 }
 // Cut off movement while joystick returns to start position.
 #define ANALOG_JOYSTICK_CUTOFF
 
 // Deadzones in percent
 #define ANALOG_JOYSTICK_X_AXIS_DEADZONE 3;
 #define ANALOG_JOYSTICK_Y_AXIS_DEADZONE 3;
+#define MOUSE_EXTENDED_REPORT
 
 // Docs say I can move this to info.json but compiler complains
 #define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
