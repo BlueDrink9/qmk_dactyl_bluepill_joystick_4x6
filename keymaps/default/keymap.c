@@ -238,6 +238,17 @@ bool led_update_user(led_t led_state) {
     return true;
 }
 
+void suspend_power_down_user(void) {
+    // code will run multiple times while keyboard is suspended
+    stop_breathing(BREATHING_LED_CHANNEL_RIGHT);
+    stop_breathing(BREATHING_LED_CHANNEL_LEFT);
+}
+
+void suspend_wakeup_init_user(void) {
+    // code will run on keyboard wakeup
+    layer_state_set_user(layer_state);
+}
+
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case NEWLINE_AFTER:
