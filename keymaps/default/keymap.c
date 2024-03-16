@@ -229,8 +229,8 @@ bool led_update_user(led_t led_state) {
     }
     leds_set_by_layer_change = false;
     if (led_state.caps_lock){
-        pwm_on(BREATHING_LED_CHANNEL_RIGHT);
-        pwm_on(BREATHING_LED_CHANNEL_LEFT);
+        pwm_set(BREATHING_LED_CHANNEL_RIGHT, 50);
+        pwm_set(BREATHING_LED_CHANNEL_LEFT, 50);
     }
     if (led_state.num_lock){
         // pwm_on(BREATHING_LED_CHANNEL_RIGHT);
