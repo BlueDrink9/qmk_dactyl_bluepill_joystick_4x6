@@ -31,6 +31,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SPLIT_POINTING_ENABLE
 #define POINTING_DEVICE_LEFT
 
+// Transaction ID for inter-half coms.
+#define SPLIT_TRANSACTION_IDS_USER SYNC_LAYER_CHANGE, USER_SYNC_A
+
 #define SERIAL_USART_DRIVER SD3
 
 // #define SERIAL_DEBUG

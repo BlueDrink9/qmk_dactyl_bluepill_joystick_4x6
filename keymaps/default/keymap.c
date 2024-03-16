@@ -4,6 +4,7 @@
 #endif
 #include "features/breathing/breathing.h"
 #include "features/layer_lock.h"
+#include "transactions.h"
 
 // Custom tapping terms
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -150,12 +151,18 @@ KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
 //   }
 // }
 
+void update_layer_state_set(uint8_t state, const void* unused, uint8_t unused2, void* unused3) {
+    layer_state_set_user(state);
+}
+
 void keyboard_post_init_user(void) {
 #ifdef CONSOLE_ENABLE
   debug_enable=true;
   debug_matrix=true;
   debug_keyboard=true;
 #endif
+    // Register callback to update layer LEDs on layer change.
+    transaction_register_rpc(SYNC_LAYER_CHANGE, update_layer_state_set);
 }
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record);
@@ -184,10 +191,9 @@ void keyboard_pre_init_user(void) {
     breathing_init();
 }
 
+static const uint16_t breathing_table_dim_narrow_gaussian[BREATHING_STEPS] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,3,4,5,6,8,10,12,14,17,20,23,28,32,38,44,50,57,65,74,84,94,105,116,129,142,155,169,183,197,211,225,239,253,266,278,289,300,309,316,323,328,331,333,333,331,328,323,316,309,300,289,278,266,253,239,225,211,197,183,169,155,142,129,116,105,94,84,74,65,57,50,44,38,32,28,23,20,17,14,12,10,8,6,5,4,3,2,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 bool leds_set_by_layer_change;
-
-static const uint16_t breathing_table_dim_narrow_gaussian[BREATHING_STEPS] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,2,2,3,4,5,6,8,10,12,14,17,20,23,28,32,38,44,50,57,65,74,84,94,105,116,129,142,155,169,183,197,211,225,239,253,266,278,289,300,309,316,323,328,331,333,333,331,328,323,316,309,300,289,278,266,253,239,225,211,197,183,169,155,142,129,116,105,94,84,74,65,57,50,44,38,32,28,23,20,17,14,12,10,8,6,5,4,3,2,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     stop_breathing(BREATHING_LED_CHANNEL_RIGHT);
@@ -217,6 +223,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
     }
     leds_set_by_layer_change = true;
+    if (is_keyboard_master()){
+        transaction_rpc_exec(SYNC_LAYER_CHANGE, state, NULL, 0, NULL);
+    }
     return state;
 }
 
