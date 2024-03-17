@@ -6,18 +6,6 @@
 #include "features/layer_lock.h"
 #include "transactions.h"
 
-// Custom tapping terms
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        // case SFT_T(KC_SPC):
-        //     return TAPPING_TERM + 1250;
-        // case LT(1, KC_GRV):
-        //     return 130;
-        default:
-            return TAPPING_TERM;
-    }
-}
-
 enum custom_keycodes {
   NEWLINE_AFTER = SAFE_RANGE,
   PASTE_UP,
@@ -139,8 +127,12 @@ LAYER_LOCK, TO(QWERTY), TO(COLEMAK), TO(SPECIAL), TO(NUMBERS), KC_SYSTEM_SLEEP, 
 KC_UNDS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, TG(SNAKE_CASE),
 KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
 
-
 )};
+
+
+void housekeeping_task_user(void) {
+    update_layer_state_set();
+}
 
 // void dance_layer_toggle(tap_dance_state_t *state, void *user_data) {
 //   if (state->count == 1) {
@@ -256,6 +248,18 @@ void suspend_power_down_user(void) {
 void suspend_wakeup_init_user(void) {
     // code will run on keyboard wakeup
     layer_state_set_user(layer_state);
+}
+
+// Custom tapping terms
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        // case SFT_T(KC_SPC):
+        //     return TAPPING_TERM + 1250;
+        // case LT(1, KC_GRV):
+        //     return 130;
+        default:
+            return TAPPING_TERM;
+    }
 }
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record) {
