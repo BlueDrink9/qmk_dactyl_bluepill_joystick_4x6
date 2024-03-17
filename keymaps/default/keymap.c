@@ -4,7 +4,6 @@
 #endif
 #include "features/breathing/breathing.h"
 #include "features/layer_lock.h"
-#include "transactions.h"
 
 enum custom_keycodes {
   NEWLINE_AFTER = SAFE_RANGE,
@@ -129,6 +128,19 @@ KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS
 
 )};
 
+static uint32_t last_layer_state = 0;
+
+void update_layer_state_set(void){
+    /* By default, layer_state_set_user isn't run on layer change on
+    * the slave half, even when the layer state is synced.
+    */
+    if (!is_keyboard_master()) {
+        if (last_layer_state != layer_state) {
+            last_layer_state = layer_state;
+            layer_state_set_user(layer_state);
+        }
+    }
+}
 
 void housekeeping_task_user(void) {
     update_layer_state_set();
@@ -143,18 +155,12 @@ void housekeeping_task_user(void) {
 //   }
 // }
 
-void update_layer_state_set(uint8_t state, const void* unused, uint8_t unused2, void* unused3) {
-    layer_state_set_user(state);
-}
-
 void keyboard_post_init_user(void) {
 #ifdef CONSOLE_ENABLE
   debug_enable=true;
   debug_matrix=true;
   debug_keyboard=true;
 #endif
-    // Register callback to update layer LEDs on layer change.
-    transaction_register_rpc(SYNC_LAYER_CHANGE, update_layer_state_set);
 }
 
 bool handle_macro_presses(uint16_t keycode, keyrecord_t *record);
@@ -215,9 +221,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             break;
     }
     leds_set_by_layer_change = true;
-    if (is_keyboard_master()){
-        transaction_rpc_exec(SYNC_LAYER_CHANGE, state, NULL, 0, NULL);
-    }
     return state;
 }
 
