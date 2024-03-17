@@ -50,7 +50,7 @@
         "bootmagic": false,
         "magic": false,
         "command": false,
-        "console": true,
+        "console": false,
         "combo": true,
         "extrakey": true,
         "mousekey": true,
