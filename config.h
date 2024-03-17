@@ -61,7 +61,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ANALOG_JOYSTICK_CUTOFF
 
 // Deadzones in percent
-#define ANALOG_JOYSTICK_X_AXIS_DEADZONE 6
+#define ANALOG_JOYSTICK_X_AXIS_DEADZONE 7
 #define ANALOG_JOYSTICK_Y_AXIS_DEADZONE 6
 #define MOUSE_EXTENDED_REPORT
 
