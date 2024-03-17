@@ -1,6 +1,6 @@
 {
-    "keyboard_name": "Dactyl-Manuform (4x6_cf)",
-    "manufacturer": "tshort",
+    "keyboard_name": "Dactyl-Manuform",
+    "manufacturer": "SB",
     "url": "",
     "maintainer": "jceb",
     "processor": "STM32F103",
