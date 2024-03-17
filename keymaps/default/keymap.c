@@ -553,6 +553,7 @@ const key_override_t override_shift_esc = ko_make_basic(MOD_LSFT, QK_GRAVE_ESCAP
 // Right ctrl + esc sends ctrl+esc, left sents backtick.
 const key_override_t override_lctl_grave = ko_make_basic(MOD_LCTL, QK_GRAVE_ESCAPE, KC_GRAVE);
 const key_override_t override_rgui_backtick = ko_make_basic(MOD_RGUI, QK_GRAVE_ESCAPE, RGUI(KC_ESC));
+const key_override_t override_lctrl_tab = ko_make_basic(MOD_LSFT, KC_TAB, LCTL(KC_TAB));
 
 
 // This globally defines all key overrides to be used
@@ -561,6 +562,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &override_shift_esc,
     &override_lctl_grave,
     &override_rgui_backtick,
+    &override_lctrl_tab,
     NULL // Null terminate the array of overrides!
 };
 
